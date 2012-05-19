@@ -1,1 +1,30 @@
-Version 1.1 of Bob the Builder
+Version 1.02 of Bob the Builder
+
+CHANGELOG
+-----------------------------
+1.02
+---------------------------
+#README File Improved
+#Comments improved
+
+
+
+1.01
+--------------------------------
+
+#Brick Option Implemented
+#Counter countdown Implemented
+#On event GUI implemented
+
+1.00
+-------------------------------
+
+#Program rewriten to Autoit from Java
+-------------------------
+#			#
+#   To Implement next	#
+-------------------------
+
+- Timer countdown
+- Improve brick option
+
