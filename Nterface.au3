@@ -3,6 +3,8 @@
    ; 1.1 Variables
    ; 1.2 Short Functions
    ; 1.3 Main Functions
+	  ; 1.3.1 MainLoop Function
+	  ; 1.3.2 Brick function
 ; 2.0 GUI
    ;2.1 GUI form
    ;2.2 OnEvent Programing
@@ -23,9 +25,6 @@ Global $tt1 = TimerDiff($time)
 Global $tt2 = TimerDiff($time)
 AutoItSetOption("MouseCoordMode",0)
 ; 1.2 Short Functions
-Func captureEsc()
-   $looping=false
-Endfunc
 Func setCycle($a)
    $Cycle_time=($a*1000)
 EndFunc
@@ -78,6 +77,7 @@ Func BossCount()
    EndIf
 EndFunc
 ; 1.3 Main Function
+; 1.3.1 MainLoop Function
 Func Looptime()
    while ($looping)
 	  sleep(5000+Random(0,1000))
@@ -135,7 +135,7 @@ Func Looptime()
 	  Endswitch
    WEnd
 Endfunc
-;1.4 Brick Function
+;1.3.2 Brick Function
 Func Bricking()
 BlockInput(1)
 MouseClickDrag("left",275,185,540,312)
@@ -181,7 +181,7 @@ EndFunc
 Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode 
 ;2.1 GUI form
 #Region ### START Koda GUI section ### Form=c:\users\zeroghj\desktop\vincent\workspace\autoit\koda\forms\form1.kxf
-$Form1_1 = GUICreate("Bob The Builder v1.01", 347, 246, 238, 136)
+$Form1_1 = GUICreate("Bob The Builder v1.03", 347, 246, 238, 136)
 $Group1 = GUICtrlCreateGroup("", 0, 8, 105, 121)
 $Radio1 = GUICtrlCreateRadio("Mining", 24, 24, 57, 17)
 $Radio2 = GUICtrlCreateRadio("Fishing", 24, 48, 57, 17)
