@@ -1,21 +1,36 @@
-   ; Menu
-; 1.0 Code
+;Version 1.04
+; Menu
+; 1.0 BackEnd
    ; 1.1 Variables
    ; 1.2 Short Functions
    ; 1.3 Main Functions
 	  ; 1.3.1 MainLoop Function
-	  ; 1.3.2 Brick function
-   ; 1.4 Menu Function
-	  ; 1.4.1 Menu1
-	  ; 1.4.2 Menu2
+	  ; 1.3.2 Creation function
 ; 2.0 GUI
    ;2.1 GUI form
+	  ;2.1.1 Tab Point and Click
+		 ;2.1.1a Options
+		 ;2.1.1b Walk Options
+		 ;2.1.1c Cycle Time
+		 ;2.1.1d Start/Stop
+		 ;2.1.1e Limit Options
+	  ;2.1.2 Creation
+		 ;2.1.2a Settings
+		 ;2.1.2b Cycle Options
+		 ;2.1.2c Limit
+		 ;2.1.2d Start/Stop
+		 ;2.1.2e Actions
    ;2.2 OnEvent Programing
+	  ;2.2.1 Tab 1 Point and Click
+	  ;2.2.2 Tab 2 Creation
+   ;2.3 OnEvent Functions
 
 
-; 1.0 CODE PART OF CODE
+; 1.0 BackEnd part of the code
 ; 1.1 Variables
+
 Global $Cycle_Time=30000
+Global $CreationCount = 1
 Global $Option=0
 Global $walk=false
 Global $looping=false
@@ -26,27 +41,32 @@ Global $limit=false
 Global $time = TimerInit()
 Global $tt1 = TimerDiff($time)
 Global $tt2 = TimerDiff($time)
-Global $bposx=275
-Global $bposy=185
-Global $pointx=0
-Global $pointy=0
-Global $creationmenu1=1
-Global $creationmenu2=1
-Global $uposx=540
-Global $uposy=312
-AutoItSetOption("MouseCoordMode",0)
+Global $posx=0
+Global $posy=0
+Global $posx1=0
+Global $posy1=0
+Global $posx2=0
+Global $posy2=0
+Global $posx3=0
+Global $posy3=0
+Global $posx4=0
+Global $posy4=0
+Global $posx5=0
+Global $posy5=0
+Global $posx6=0
+Global $posy6=0
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
 EndFunc
 Func dis()
    $walk=false
-	  GUICtrlSetState($Radio13,$GUI_Disable)
-	  GUICtrlSetState($Radio14,$GUI_Disable)
+	  GUICtrlSetState($RadioAutoWalkOnPointclick,$GUI_Disable)
+	  GUICtrlSetState($Radioauto_walkoffpointclick,$GUI_Disable)
 EndFunc
 Func ena()
-   	  GUICtrlSetState($Radio13,$GUI_Enable)
-	  GUICtrlSetState($Radio14,$GUI_Enable)
+   	  GUICtrlSetState($RadioAutoWalkOnPointclick,$GUI_Enable)
+	  GUICtrlSetState($Radioauto_walkoffpointclick,$GUI_Enable)
 EndFunc
 Func setOption($a)
    $Option=$a
@@ -73,23 +93,37 @@ EndFunc
 Func WalkSet($a)
    $walk=$a
 EndFunc
-Func setmenu1($a)
-   $creationmenu1 = $a
+Func setcreationcount($a)
+   $CreationCount = $a
 EndFunc
-Func setmenu2($a)
-   $creationmenu2 = $a
+Func takeposition ()
+   $posx = MouseGetPos(0)
+   $posy = MouseGetPos(1)
 EndFunc
-Func setbulkX($a)
-   $bposx = $a
+
+Func positionset1 ()
+   $posx1 = $posx
+   $posy1 = $posy
 EndFunc
-Func setbulkY($a)
-   $bposy = $a
+Func positionset2 ()
+   $posx2 = $posx
+   $posy2 = $posy
 EndFunc
-Func setuserX($a)
-   $uposx = $a
+Func positionset3 ()
+   $posx3 = $posx
+   $posy3 = $posy
 EndFunc
-Func setuserY($a)
-   $uposy = $a
+Func positionset4 ()
+   $posx4 = $posx
+   $posy4 = $posy
+EndFunc
+Func positionset5 ()
+   $posx5 = $posx
+   $posy5 = $posy
+EndFunc
+Func positionset6 ()
+   $posx6 = $posx
+   $posy6 = $posy
 EndFunc
 Func BossCount()
    if ($limit) Then
@@ -122,11 +156,13 @@ Func Looptime()
 			   if (NOT($binded)) Then
 				  send("{F1}")
 				  send("bind 1 mine_forward")
+				  sleep(1000)
+				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
 			   Send("1")
-			   Call("BossCount")
+			   ;Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
 		 Next
@@ -136,6 +172,8 @@ Func Looptime()
 			   if (NOT($binded)) Then
 				  send("{F1}")
 				  send("bind 1 fish")
+				  sleep(1000)
+				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
@@ -150,6 +188,8 @@ Func Looptime()
 			   if (NOT($binded)) Then
 				  send("{F1}")
 				  send("bind 1 track")
+				  sleep(1000)
+				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
@@ -159,53 +199,39 @@ Func Looptime()
 			EndIf
 		 Next
 	  Case 4
-		 Call("Bricking")
+		 Call("Creation")
 	  
 	  Endswitch
    WEnd
 Endfunc
-;1.3.2 Brick Function ## will become the creation function ##
-Func Bricking()
+;1.3.2 Creation Function
+Func Creation()
 BlockInput(1)
-$pointx = $uposx
-$pointy = $uposy
-MouseClickDrag("left",$bposx,$bposy,$pointx,$pointy)
+MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    sleep(1000  + Random(0,1000))
-   Send(($Cycle_time)/1000)
+   Send($CreationCount)
    Send("{Enter}")
    sleep(1000  + Random(0,1000))
-   MouseClickDrag("left",$pointx,$pointy,($pointx-60),($pointy-170))
-   $pointx += -60
-   $pointy += -170
-   sleep(1000  + Random(0,1000))
    MouseClick("right")
-   $pointx += 20
-   $pointy += 58
-   MouseMove($pointx,$pointy)
+   MouseMove($posx3,$posy3)
    Sleep(1000  + Random(0,1000))
-   $pointx += -65
-   MouseMove($pointx,$pointy)
+   MouseMove($posx4,$posy3)
+   Sleep(1000  + Random(0,1000))
+   MouseMove($posx4,$posy4)
    Sleep(500  + Random(0,250))
-   Call("Menu1")
-   MouseMove($pointx,$pointy)
+   MouseMove($posx5,$posy4)
    Sleep(500  + Random(0,250))
-	  $pointx += +65
-   MouseMove($pointx,$pointy)
-   Call("Menu2")
-   MouseMove($pointx,$pointy)
+   MouseMove($posx5,$posy5)
    Sleep(500  + Random(0,250))
    MouseClick("left")
    BlockInput(0)
    Sleep(35000  + Random(0,3000))
    if ($looping) then
    BlockInput(1)
-   $pointx += 165
-   $pointy += -173
-   MouseMove($pointx,$pointy)
+   MouseMove($posx6,$posy6)
    MouseClick("left")
    Sleep(500 + Random(0,250))
-   $pointy += 12
-   MouseMove($pointx,$pointy)
+   MouseMove($posx6,($posy6+12))
    Sleep(500 + Random(0,250))
    Send("{LShift down}")
    Sleep(500 + Random(0,250))
@@ -213,147 +239,121 @@ MouseClickDrag("left",$bposx,$bposy,$pointx,$pointy)
    Sleep(500 + Random(0,250))
    Send("{LShift up}")
    Sleep(500 + Random(0,250))
-   $pointy += -12
-   MouseClickDrag("left",$uposx,($uposy),$bposx,$bposy)
+   MouseClickDrag("left",$posx6,($posy6),$posx2,$posy2)
    BlockInput(0)
    endif
 EndFunc
-;1.4 Menu Functions
-   ;1.4.1 Menu1
-   Func Menu1 ()
-	  
-	  switch $creationmenu1
-		 case 1
-		 case 2
-			$pointy +=10
-		 case 3
-			$pointy += 20
-		 case 4
-			$pointy += 30
-		 case 5
-			$pointy += 40
-		 case 6
-			$pointy += 50
-		 case 7
-			$pointy += 60
-	  Endswitch
-   EndFunc
-   ;1.4.2 Menu2
-   Func Menu2 ()
-	  switch $creationmenu2
-		 case 1
-		 case 2
-			$pointy +=5
-		 case 3
-			$pointy +=10
-		 case 4
-			$pointy +=15
-		 case 5
-			$pointy +=20
-		 case 6
-			$pointy +=25
-		 case 7
-			$pointy +=30
-		 case 8
-			$pointy +=35
-   Endswitch
-   EndFunc
-; 2.0 GUI PART OF CODE
+;2.0 GUI part of code
 #include <ButtonConstants.au3>
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
 #include <TabConstants.au3>
 #include <WindowsConstants.au3>
-Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode 
-;2.1 GUI form
 #Region ### START Koda GUI section ### Form=c:\users\zeroghj\desktop\vincent\workspace\autoit\koda\forms\form1.kxf
-$Form1_1 = GUICreate("Bob The Builder v1.03", 347, 246, 239, 175)
-$TabPoint1 = GUICtrlCreateTab(0, 0, 345, 241)
+;2.1 GUI form
+Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode 
+$Form1_1 = GUICreate("Bob The Builder v1.04", 411, 335, 239, 175)
+   ;2.1.1 Tab1 Point and Click
+$Tabpointclick = GUICtrlCreateTab(0, 0, 401, 329)
 $TabSheet1 = GUICtrlCreateTabItem("Point and Click")
-$Group6 = GUICtrlCreateGroup("", 4, 33, 105, 121)
-$Radio9 = GUICtrlCreateRadio("Mining", 28, 49, 57, 17)
-$Radio10 = GUICtrlCreateRadio("Fishing", 28, 73, 57, 17)
-$Radio11 = GUICtrlCreateRadio("Tracking", 28, 97, 65, 17)
+	  ;2.1.1a Options
+$GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 121)
+$RadioMining = GUICtrlCreateRadio("Mining", 28, 49, 57, 17)
+$RadioFishing = GUICtrlCreateRadio("Fishing", 28, 73, 57, 17)
+$RadioTracking = GUICtrlCreateRadio("Tracking", 28, 97, 65, 17)
+	  ;2.1.1b Walk Options
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group7 = GUICtrlCreateGroup("", 116, 33, 225, 49)
-$Label1 = GUICtrlCreateLabel("Auto_Walk", 124, 49, 57, 17)
-$Radio13 = GUICtrlCreateRadio("On", 188, 49, 41, 17)
-$Radio14 = GUICtrlCreateRadio("Off", 236, 49, 65, 17)
+$GroupAuto_walkpointclick = GUICtrlCreateGroup("", 116, 33, 225, 49)
+$LblAuto_walkpointandclick = GUICtrlCreateLabel("Auto_Walk", 124, 49, 57, 17)
+$RadioAutoWalkOnPointclick = GUICtrlCreateRadio("On", 188, 49, 41, 17)
+$Radioauto_walkoffpointclick = GUICtrlCreateRadio("Off", 236, 49, 65, 17)
+	  ;2.1.1c Cycle Time
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group8 = GUICtrlCreateGroup("", 116, 89, 225, 65)
-$Label3 = GUICtrlCreateLabel("Cycle Time", 132, 105, 56, 17)
-$Input2 = GUICtrlCreateInput("Insert Cycle Time", 204, 105, 121, 21)
+$Groupcycle_timepointclick = GUICtrlCreateGroup("", 116, 89, 225, 65)
+$LblCycle_timepointclick = GUICtrlCreateLabel("Cycle Time", 132, 105, 56, 17)
+$InputCycleTimepointclick = GUICtrlCreateInput("Insert Cycle Time", 204, 105, 121, 21)
+	  ;2.1.1d Start/Stop
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group9 = GUICtrlCreateGroup("", -4, 193, 345, 57)
-$Button3 = GUICtrlCreateButton("Start", 60, 209, 75, 25)
-$Button4 = GUICtrlCreateButton("Stop", 172, 209, 75, 25)
+$GroupStopstartpointclick = GUICtrlCreateGroup("", 12, 209, 345, 57)
+$BtnStartpointclick = GUICtrlCreateButton("Start", 76, 225, 75, 25)
+$Btnstoppointclick = GUICtrlCreateButton("Stop", 188, 225, 75, 25)
+   ;2.1.1e Limit Option
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group10 = GUICtrlCreateGroup("", 4, 153, 345, 49)
-$inputlimit=GUICtrlCreateInput("", 212, 169, 121, 21)
-$Radio15 = GUICtrlCreateRadio("Time Limit", 20, 177, 73, 17)
-$Radio16 = GUICtrlCreateRadio("Cycle Limit", 108, 177, 81, 17)
+$GroupTimelimitpointclick = GUICtrlCreateGroup("", 4, 153, 345, 49)
+$Inputtimelimitpointclick = GUICtrlCreateInput("", 212, 169, 121, 21)
+$RadioTimelimitpointclick = GUICtrlCreateRadio("Time Limit", 20, 177, 73, 17)
+$RadioCyclelimitpointclick = GUICtrlCreateRadio("Cycle Limit", 108, 177, 81, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
+   ;2.1.2 Tab 2 Creation
 $TabSheet2 = GUICtrlCreateTabItem("Creation")
-$Group1 = GUICtrlCreateGroup("Menu Selection", 8, 32, 129, 113)
-$Label2 = GUICtrlCreateLabel("Menu1", 16, 48, 37, 17)
-$Label4 = GUICtrlCreateLabel("Menu2", 16, 72, 37, 17)
-$InpMenu1=GUICtrlCreateInput("1", 88, 48, 41, 21)
-$InpMenu2=GUICtrlCreateInput("1", 88, 72, 41, 21)
-$Label6 = GUICtrlCreateLabel("UserMenuX", 16, 96, 60, 17)
-$InpUMenX=GUICtrlCreateInput("540", 88, 96, 41, 21)
-$Label7 = GUICtrlCreateLabel("UserMenuY", 16, 120, 60, 17)
-$InpUMenY=GUICtrlCreateInput("312", 88, 120, 41, 21)
+GUICtrlSetState(-1,$GUI_SHOW)
+	  ;2.1.2a Settings
+$GroupMousesetcreation = GUICtrlCreateGroup("Setting", 8, 32, 161, 177)
+$Btninitialbulk = GUICtrlCreateButton("Set Initial Bulk", 32, 48, 115, 25)
+$Btninventoryloc = GUICtrlCreateButton("Set Inventory location", 32, 112, 115, 25)
+$BtnMenu1 = GUICtrlCreateButton("Menu1", 16, 144, 67, 25)
+$BtnMenu2 = GUICtrlCreateButton("Menu2", 88, 144, 67, 25)
+$BtnMenu3 = GUICtrlCreateButton("Menu3", 16, 176, 67, 25)
+$Btnfinalbulk = GUICtrlCreateButton("Set Final Bulk", 32, 80, 115, 25)
+	  ;2.1.2b Cycle Option
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group2 = GUICtrlCreateGroup("", 140, 81, 201, 57)
-$Label5 = GUICtrlCreateLabel("Cycle Time", 148, 97, 56, 17)
-$Input1 = GUICtrlCreateInput("Insert Cycle Time", 212, 97, 121, 21)
+$GroupCycletimeCreation = GUICtrlCreateGroup("", 180, 153, 201, 57)
+$LblCycle_time = GUICtrlCreateLabel("Cycle Time", 188, 169, 56, 17)
+$InputCycleTimeCreation = GUICtrlCreateInput("Insert Cycle Time", 252, 169, 121, 21)
+	  ;2.1.2c Limit
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group3 = GUICtrlCreateGroup("", 4, 137, 345, 49)
-$InpLimit2 =GUICtrlCreateInput("", 212, 153, 121, 21)
-$Radio1 = GUICtrlCreateRadio("Time Limit", 12, 153, 73, 17)
-$Radio2 = GUICtrlCreateRadio("Cycle Limit", 108, 153, 81, 17)
+$Grouptimelimitcreation = GUICtrlCreateGroup("", 12, 209, 345, 49)
+$Inputtimelimitcreation = GUICtrlCreateInput("", 220, 225, 121, 21)
+$RadioTimelimitcreation = GUICtrlCreateRadio("Time Limit", 20, 225, 73, 17)
+$Radiocyclelimitcreation = GUICtrlCreateRadio("Cycle Limit", 116, 225, 81, 17)
+	  ;2.1.2d Start/Stop
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group4 = GUICtrlCreateGroup("", 4, 185, 345, 57)
-$Button1 = GUICtrlCreateButton("Start", 68, 201, 75, 25)
-$Button2 = GUICtrlCreateButton("Stop", 180, 201, 75, 25)
+$groupstopstartcration = GUICtrlCreateGroup("", 12, 257, 345, 57)
+$Btnstartcreation = GUICtrlCreateButton("Start", 76, 273, 75, 25)
+$Btnstopcreation = GUICtrlCreateButton("Stop", 188, 273, 75, 25)
+	  ;2.1.2e Actions
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group5 = GUICtrlCreateGroup("Bulk X, Y", 140, 33, 201, 49)
-$InpBulkX=GUICtrlCreateInput("275", 160, 48, 57, 21)
-$InpBulkY=GUICtrlCreateInput("185", 224, 48, 65, 21)
+$GroupAction = GUICtrlCreateGroup("Action", 180, 41, 201, 49)
+$InputNumberAction = GUICtrlCreateInput("", 200, 56, 129, 21)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
-
 ;2.2 OnEvent Programing
+HotKeySet("^+{h}","takeposition")
 GUISetOnEvent($GUI_EVENT_CLOSE, "CLOSEClicked")
-GUICtrlSetOnEvent($Radio9, "Mine1")
-GUICtrlSetOnEvent($Radio10, "Fish2")
-GUICtrlSetOnEvent($Radio11, "Track3")
-GUICtrlSetOnEvent($Radio13, "Walkon")
-GUICtrlSetOnEvent($Radio14, "Walkoff")
-GUICtrlSetOnEvent($Input2, "cyclez")
-GUICtrlSetOnEvent($Button3, "son")
-GUICtrlSetOnEvent($Button4, "soff")
-GUICtrlSetOnEvent($Radio15, "ltime")
-GUICtrlSetOnEvent($Radio16, "lcount")
-GUICtrlSetOnEvent($inputlimit, "lset")
-GUICtrlSetOnEvent($InpMenu1, "menuone")
-GUICtrlSetOnEvent($InpMenu2, "menutwo")
-GUICtrlSetOnEvent($Input1, "cyclez")
-GUICtrlSetOnEvent($Radio1, "ltime")
-GUICtrlSetOnEvent($Radio2, "lcount")
-GUICtrlSetOnEvent($Button1, "son2")
-GUICtrlSetOnEvent($Button2, "soff")
-GUICtrlSetOnEvent($InpLimit2, "lset")
-GUICtrlSetOnEvent($InpUMenX, "userX")
-GUICtrlSetOnEvent($InpUMenY, "userY")
-GUICtrlSetOnEvent($InpBulkX, "bulkX")
-GUICtrlSetOnEvent($InpBulkY, "bulkY")
+   ;2.2.1 Tab 1 Point and Click
+GUICtrlSetOnEvent($RadioMining, "Mine1")
+GUICtrlSetOnEvent($RadioFishing, "Fish2")
+GUICtrlSetOnEvent($RadioTracking, "Track3")
+GUICtrlSetOnEvent($RadioAutoWalkOnPointclick, "Walkon")
+GUICtrlSetOnEvent($Radioauto_walkoffpointclick, "Walkoff")
+GUICtrlSetOnEvent($InputCycleTimepointclick, "cyclez1")
+GUICtrlSetOnEvent($BtnStartpointclick, "son")
+GUICtrlSetOnEvent($Btnstoppointclick, "soff")
+GUICtrlSetOnEvent($RadioTimelimitpointclick, "ltime")
+GUICtrlSetOnEvent($RadioCyclelimitpointclick, "lcount")
+GUICtrlSetOnEvent($Inputtimelimitpointclick, "lset")
+   ;2.2.2 Tab 2 Creation
+GUICtrlSetOnEvent($Btninitialbulk, "InitialBulk")
+GUICtrlSetOnEvent($Btninventoryloc, "Inventory")
+GUICtrlSetOnEvent($InputCycleTimeCreation, "cyclez2")
+GUICtrlSetOnEvent($RadioTimelimitcreation, "ltime")
+GUICtrlSetOnEvent($Radiocyclelimitcreation, "lcount")
+GUICtrlSetOnEvent($Btnstartcreation, "son2")
+GUICtrlSetOnEvent($Btnstopcreation, "soff")
+GUICtrlSetOnEvent($Inputtimelimitcreation, "lset")
+GUICtrlSetOnEvent($BtnMenu1, "Menu1")
+GUICtrlSetOnEvent($BtnMenu2, "Menu2")
+GUICtrlSetOnEvent($BtnMenu3, "Menu3")
+GUICtrlSetOnEvent($Btnfinalbulk, "FinalBulk")
+GUICtrlSetOnEvent($InputNumberAction, "Action")
+
 Func CLOSEClicked()
    Exit
 EndFunc
+   ;(kinda) Tab1
 Func Mine1()
 	  Call("setOption", 1)
 	  Call("ena")
@@ -372,8 +372,11 @@ EndFunc
 Func Walkoff()
 	  Call("WalkSet", false)
 EndFunc
-Func cyclez()
-	  call("setCycle",GUICTrlRead($Input1))
+Func cyclez1()
+	  call("setCycle",GUICTrlRead($InputCycleTimepointclick))
+EndFunc
+Func cyclez2()
+	  call("setCycle",GUICTrlRead($InputCycleTimeCreation))
 EndFunc
 Func son()
 	  call("lset")
@@ -392,30 +395,35 @@ Func ltime()
 EndFunc
 Func lcount()
 	  $Counting=true
-EndFunc
+   EndFunc
 Func lset()
-	  Call("setLimit",GUICTrlRead($Input2))
+	  Call("setLimit",GUICTrlRead($Inputtimelimitcreation))
+   EndFunc
+Func InitialBulk()
+	  Call("positionset1");
+   EndFunc
+Func FinalBulk()
+	  Call("positionset2");
 EndFunc
-Func menuone()
-	  Call("setmenu1",GUICTrlRead($InpMenu1))
+Func Menu1()
+	  Call("positionset3");
 EndFunc
-Func menutwo()
-	  Call("setmenu2",GUICTrlRead($InpMenu2))
+Func Menu2()
+	  Call("positionset4");
 EndFunc
-Func bulkX()
-	  Call("setbulkX",GUICTrlRead($InpBulkX))
+Func Menu3()
+	  Call("positionset5");
+   EndFunc
+Func Inventory()
+	  Call("positionset6");
 EndFunc
-Func bulkY()
-	  Call("setbulkY",GUICTrlRead($InpBulkY))
-EndFunc 
-Func userX()
-	  Call("setuserX",GUICTrlRead($InpUMenuX))
-EndFunc 
-Func userY()
-	  Call("setuserY",GUICTrlRead($InpUMenuY))
+Func Action()
+	  Call("setcreationcount",GUICTrlRead($InputNumberAction))
 EndFunc
 While 1
-	   Call("Looptime")
+	  Call("Looptime")
 
 WEnd
+
+
 
