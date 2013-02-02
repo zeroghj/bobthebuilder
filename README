@@ -1,1 +1,65 @@
-Version 1.1 of Bob the Builder
+Version 1.04b of Bob the Builder
+
+CHANGELOG
+-----------------------------
+1.04b
+---------------------------
+#Fixed some issues with the Readme File
+-----------------------------
+1.04
+---------------------------
+#Renamed all the forms and button in the GUI to be easier to understand
+#Added more comments in the GUI section
+#Old Bricking system revamped
+#Creation Mode implemented
+#User can now define location to click in creation mode using Shift + Ctrl + h hotkey
+
+~~Information to use the Creative mode~~
+- Using the (Shift + Ctrl + h) hotkey will let you "save" the current location of your cursor
+- After saving a location, click on the button that best Describe the location of your cursor
+:
+. Initial Bulk is the location of the item you want to take from a bulk to transform
+. Final Bulk is the location where you want to drop the resulting items
+. Inventory is the location where you will place the item in your inventory
+. Menu 1,2,3 are the chronological order of where your mouse will move through the menus
+. "Action" is the number of item you will work on at the same time
+. "cycle time" is the time it takes you to complete the work of one cycle of object.
+
+-----------------------------
+1.03
+---------------------------
+#Creation Tab implemented
+	#select creation of item from bulk to bulk
+	#user can select which menu option to use
+	#user can change their X,Y coordinate to fit their resolution and window set up
+#Randomness added to Brick
+#brick position now uses variables instead of constants.
+#Beginning to implement creation option and creation menu selection
+
+-----------------------------
+1.02
+---------------------------
+#README File Improved
+#Comments improved
+
+
+
+1.01
+--------------------------------
+
+#Brick Option Implemented
+#Counter countdown Implemented
+#On event GUI implemented
+
+1.00
+-------------------------------
+
+#Program rewriten to Autoit from Java
+-------------------------
+#			#
+#   To Implement next	#
+-------------------------
+
+- Timer countdown
+- Improve brick option
+
