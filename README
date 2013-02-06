@@ -1,6 +1,11 @@
-Version 1.05 of Bob the Builder
+Version 1.05b of Bob the Builder
 
 CHANGELOG
+-----------------------------
+1.05b
+---------------------------
+#Fixed some issues with the iteration
+#Fixed some issues with the return to bulk
 -----------------------------
 1.05
 ---------------------------

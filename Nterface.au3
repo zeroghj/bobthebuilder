@@ -1,4 +1,4 @@
-;Version 1.05
+;Version 1.05b
 ; Menu
 ; 1.0 BackEnd
    ; 1.1 Variables
@@ -232,7 +232,7 @@ Endfunc
 ;1.3.2 Creation Function
 Func Creation()
    sleep(100  + Random(0,1000))
-   $iterate=$iteration
+   $iterate=0
 BlockInput(1)
 MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    sleep(1000  + Random(0,1000))
@@ -260,6 +260,7 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
 	  MouseClick("left")
 	  BlockInput(0)
 	  Sleep($Cycle_Time  + Random(0,3000))
+	  $iterate= $iterate+1
    Wend
    if ($looping) then
 	  sleep(100  + Random(0,1000))
@@ -267,7 +268,7 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    MouseMove($posx6,$posy6)
    MouseClick("left")
    Sleep(500 + Random(0,250))
-   For $i=0 to $finalitembulk
+   For $i=1 to $finalitembulk
    MouseMove(MouseGetPos(0),MouseGetPos(1)+12)
    Sleep(500 + Random(0,250))
    Send("{LShift down}")
