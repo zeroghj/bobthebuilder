@@ -1,6 +1,27 @@
-Version 1.04b of Bob the Builder
+Version 1.05 of Bob the Builder
 
 CHANGELOG
+-----------------------------
+1.05
+---------------------------
+
+	Point and Click
+	
+#Added the "Digging" option
+	
+	Creation
+
+#The cycle time option for the creation menu now actually works
+#Small Improvements were made to try to make the creation mode more reliable
+#Added the change tool interface, although not yet functional.
+#Added the Iteration Option in the Creation Mode, now allows to create multiple
+times with the same items before the next cycle
+#Added the number of item to return to the bulk options
+
+Yet to be implemented/Implemented in next version:
+-Added the Creation_settings which allows to change tool and to make change to the number of item
+to be put into a bulk bin once the work is done
+
 -----------------------------
 1.04b
 ---------------------------
