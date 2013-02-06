@@ -1,10 +1,12 @@
-Version 1.04b of Bob the Builder
+Version 1.02 of Bob the Builder
 
 CHANGELOG
 -----------------------------
-1.04b
+1.03
 ---------------------------
-#Fixed some issues with the Readme File
+#Randomness added to Brick
+#brick position now uses variables instead of constants.
+#Beginning to implement creation option and creation menu selection
 -----------------------------
 1.04
 ---------------------------
@@ -32,9 +34,7 @@ CHANGELOG
 	#select creation of item from bulk to bulk
 	#user can select which menu option to use
 	#user can change their X,Y coordinate to fit their resolution and window set up
-#Randomness added to Brick
-#brick position now uses variables instead of constants.
-#Beginning to implement creation option and creation menu selection
+
 
 -----------------------------
 1.02
