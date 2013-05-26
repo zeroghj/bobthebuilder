@@ -1,4 +1,4 @@
-;Version 1.05b
+;Version 1.06
 ; Menu
 ; 1.0 BackEnd
    ; 1.1 Variables
@@ -215,17 +215,63 @@ Func Looptime()
 			if($looping) Then
 			   if (NOT($binded)) Then
 				  send("{F1}")
-				  send("bind 1 track")
+				  send("bind 1 IMPROVE")
+				  sleep(1000)
+				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind 2 REPAIR")
+				  sleep(1000)
+				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind o ACTIVATE_TOOL1")
+				  sleep(1000)
+				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind p ACTIVATE_TOOL2")
+				 sleep(1000)
+				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind k ACTIVATE_TOOL3")
+				  sleep(1000)
+				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind l ACTIVATE_TOOL4")
+				  sleep(1000)
+				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind m ACTIVATE_TOOL5")
 				  sleep(1000)
 				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
+			   Send("o")
 			   Send("1")
+			   sleep(100)
+			   Send("p")
+			   Send("1")
+			   sleep(100)
+			   Send("k")
+			   Send("1")
+			   sleep(100)
+			   Send("l")
+			   Send("1")
+			   sleep(100)
+			   Send("m")
+			   Send("1")
+			   sleep(100)
+			   Send("2")
 			   Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
 		 Next
+		 
 	  Endswitch
    WEnd
 Endfunc
@@ -291,7 +337,7 @@ EndFunc
 #include <WindowsConstants.au3>
 ;2.1 GUI form
 #Region ### START Koda GUI section ###
-$Form1_1 = GUICreate("Bob The Builder v1.05", 411, 335, 251, 180)
+$Form1_1 = GUICreate("Bob The Builder v1.06", 411, 335, 251, 180)
 $Tabpointclick = GUICtrlCreateTab(0, 0, 401, 329)
 $PointClick = GUICtrlCreateTabItem("Point and Click")
 $GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 121)
@@ -379,7 +425,7 @@ Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode
 GUICtrlSetOnEvent($RadioMining, "Mine1")
 GUICtrlSetOnEvent($RadioFishing, "Fish2")
 GUICtrlSetOnEvent($RadioTracking, "Track3")
-GUICtrlSetOnEvent($RadioTracking, "Digging5")
+GUICtrlSetOnEvent($RadDigging5, "Digging5")
 GUICtrlSetOnEvent($RadioAutoWalkOnPointclick, "Walkon")
 GUICtrlSetOnEvent($Radioauto_walkoffpointclick, "Walkoff")
 GUICtrlSetOnEvent($InputCycleTimepointclick, "cyclez1")
