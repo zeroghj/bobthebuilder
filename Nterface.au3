@@ -58,6 +58,8 @@ Global $posy5=0
 Global $posx6=0
 Global $posy6=0
 Global $finalitembulk=2
+Global $lumptimer=0
+Global $state=0
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
@@ -214,6 +216,8 @@ Func Looptime()
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
+				  WinActivate("Wurm Online 3.1.77-4859", "")
+				  WinWaitActive("Wurm Online 3.1.77-4859")
 				  send("{F1}")
 				  send("bind 1 IMPROVE")
 				  sleep(1000)
@@ -231,7 +235,7 @@ Func Looptime()
 				  sleep(1000)
 				  send("{Enter}")
 				  send("bind p ACTIVATE_TOOL2")
-				 sleep(1000)
+				  sleep(1000)
 				  send("{Enter}")
 				  sleep(1000)
 				  send("{Enter}")
@@ -248,14 +252,28 @@ Func Looptime()
 				  send("bind m ACTIVATE_TOOL5")
 				  sleep(1000)
 				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind j ACTIVATE_TOOL6")
+				  sleep(1000)
+				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
 			   Beep()
 			   sleep(1000)
+			   $state = WinGetState("Wurm Online 3.1.77-4859", "")
 			   WinActivate("Wurm Online 3.1.77-4859", "")
 			   WinWaitActive("Wurm Online 3.1.77-4859")
 			   BlockInput(1)
+			   If ($lumptimer > 20) Then
+				  ControlSend("Wurm Online 3.1.77-4859", "", "", "{ESC}")
+				  Sleep(100)
+				  MouseClickDrag("left",$posx6,$posy6,$posx1,$posy1)
+				  Sleep(100)
+				  MouseClickDrag("left",$posx3,$posy3,$posx6,$posy6)
+				  $lumptimer = 0
+			   EndIf  
 			   MouseMove($posx1,$posy1)
 			   ControlSend("Wurm Online 3.1.77-4859", "", "", "o")
 			   sleep(100)
@@ -277,9 +295,17 @@ Func Looptime()
 			   sleep(100)
 			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
 			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "j")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
 			   ControlSend("Wurm Online 3.1.77-4859", "", "", "2")
 			   sleep(100)
 			   BlockInput(0)
+			   $lumptimer = $lumptimer + 1
+			   If (NOT($state = 8)) Then
+			    WinSetState("Wurm Online 3.1.77-4859", "", @SW_MINIMIZE)
+			   EndIf
 			   Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
@@ -335,9 +361,9 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    MouseClick("left")
    Sleep(500 + Random(0,250))
    Send("{LShift up}")
+   MouseClickDrag("left",$posx6,($posy6),$posx2,$posy2)
    Sleep(500 + Random(0,250))
    Next
-   MouseClickDrag("left",$posx6,($posy6),$posx2,$posy2)
    BlockInput(0)
    endif
 EndFunc
@@ -431,7 +457,7 @@ GUICtrlCreateTabItem("")
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 ;2.2 OnEvent Programing
-HotKeySet("{LSHIFT}+{h}","takeposition")
+HotKeySet("^{h}","takeposition")
 GUISetOnEvent($GUI_EVENT_CLOSE, "CLOSEClicked")
 Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode 
    ;2.2.1 Tab 1 Point and Click
