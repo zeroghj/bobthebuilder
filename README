@@ -1,6 +1,33 @@
-Version 1.05b of Bob the Builder
+Version 1.07 of Bob the Builder
 
 CHANGELOG
+-----------------------------
+1.07
+-----------------------------
+
+General
+
+#complete redesign of interface
+#implemented drinking
+
+Point and Click
+#Reimplemented Digging
+
+Creation
+#implemented ON/OFF for bulk bin
+#While change tool appears in menu, it is not functional yet.
+
+Improvement
+
+#implemented improve properly
+#implemented lump reheating
+#implemented improvement for up to 6 items
+
+TODO
+#Implement change tool
+#Remake cursor variable to arrays
+#add open/close window + beeping option
+
 -----------------------------
 1.06
 ---------------------------

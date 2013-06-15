@@ -1,4 +1,4 @@
-;Version 1.06
+;Version 1.07
 ; Menu
 ; 1.0 BackEnd
    ; 1.1 Variables
@@ -6,24 +6,13 @@
    ; 1.3 Main Functions
 	  ; 1.3.1 MainLoop Function
 	  ; 1.3.2 Creation function
+	  ; 1.3.3 Improvement Function
 ; 2.0 GUI
    ;2.1 GUI form
-	  ;2.1.1 Tab Point and Click
-		 ;2.1.1a Options
-		 ;2.1.1b Walk Options
-		 ;2.1.1c Cycle Time
-		 ;2.1.1d Start/Stop
-		 ;2.1.1e Limit Options
-	  ;2.1.2 Creation
-		 ;2.1.2a Settings
-		 ;2.1.2b Cycle Options
-		 ;2.1.2c Limit
-		 ;2.1.2d Start/Stop
-		 ;2.1.2e Actions
    ;2.2 OnEvent Programing
-	  ;2.2.1 Tab 1 Point and Click
+	  ;2.2.1 Tab 1 Main Menu
 	  ;2.2.2 Tab 2 Creation
-	  ;2.2.3 Tab 3 Creation Setting
+	  ;2.2.3 Tab 3 Improvement
    ;2.3 OnEvent Functions
 
 
@@ -57,10 +46,46 @@ Global $posx5=0
 Global $posy5=0
 Global $posx6=0
 Global $posy6=0
+Global $wposx1=0
+Global $wposy1=0
+Global $wposx2=0
+Global $wposy2=0
+Global $lposx1=0
+Global $lposy1=0
+Global $lposx2=0
+Global $lposy2=0
+Global $itemposx1=0
+Global $itemposy1=0
+Global $itemposx2=0
+Global $itemposy2=0
+Global $itemposx3=0
+Global $itemposy3=0
+Global $itemposx4=0
+Global $itemposy4=0
+Global $itemposx5=0
+Global $itemposy5=0
+Global $itemposx6=0
+Global $itemposy6=0
 Global $finalitembulk=2
+Global $lumptimer=0
+Global $state=0
+Global $BB=true
+Global $itemnumber=1
+Global $loopcounter=0
+Global $ps1=0
+Global $ps2=0
+Global $citem=0
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
+EndFunc
+Func setBB($a)
+   $BB =$a
+EndFunc
+Func setitemnumber($a)
+   if $a > $itemnumber then
+		$itemnumber = $a
+	Endif
 EndFunc
 Func dis()
    $walk=false
@@ -134,6 +159,46 @@ Func positionset6 ()
    $posx6 = $posx
    $posy6 = $posy
 EndFunc
+Func positionsetwater1 ()
+   $wposx1 = $posx
+   $wposy1 = $posy
+EndFunc
+Func positionsetwater2 ()
+   $wposx2 = $posx
+   $wposy2 = $posy
+EndFunc
+Func positionsetlump1 ()
+   $lposx1 = $posx
+   $lposy1 = $posy
+EndFunc
+Func positionsetlump2 ()
+   $lposx2 = $posx
+   $lposy2 = $posy
+EndFunc
+Func positionsetitem1 ()
+   $itemposx1 = $posx
+   $itemposy1 = $posy
+EndFunc
+Func positionsetitem2 ()
+   $itemposx2 = $posx
+   $itemposy2 = $posy
+EndFunc
+Func positionsetitem3 ()
+   $itemposx3 = $posx
+   $itemposy3 = $posy
+EndFunc
+Func positionsetitem4 ()
+   $itemposx4 = $posx
+   $itemposy4 = $posy
+EndFunc
+Func positionsetitem5 ()
+   $itemposx5 = $posx
+   $itemposy5 = $posy
+EndFunc
+Func positionsetitem6 ()
+   $itemposx6 = $posx
+   $itemposy6 = $posy
+EndFunc
 Func BossCount()
    if ($limit) Then
    	  if ($time_count>0)AND($Counting) Then
@@ -158,6 +223,7 @@ Func Looptime()
 		 sleep(1000+Random(0,500))
 		 Send("{w up}")
 	  EndIf
+	  call("getwater")
 	  Switch $Option
 	  Case 1
 		 For $i =0 to 5
@@ -196,7 +262,7 @@ Func Looptime()
 			if($looping) Then
 			   if (NOT($binded)) Then
 				  send("{F1}")
-				  send("bind 1 dig")
+				  send("bind 1 track")
 				  sleep(1000)
 				  send("{Enter}")
 				  send("{F1}")
@@ -209,11 +275,28 @@ Func Looptime()
 		 Next
 	  Case 4
 		 Call("Creation")
-
-	  	  Case 5
+	  Case 5
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
+				  send("{F1}")
+				  send("bind 1 dig")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("{F1}")
+				  $binded=True
+			   EndIf
+			   Send("1")
+			   Call("BossCount")
+			   sleep($Cycle_time + Random(0,1000))
+			EndIf
+		 Next
+	  	  Case 6
+		 For $i =0 to 5
+			if($looping) Then
+			   if (NOT($binded)) Then
+				  WinActivate("Wurm Online 3.1.77-4859", "")
+				  WinWaitActive("Wurm Online 3.1.77-4859")
 				  send("{F1}")
 				  send("bind 1 IMPROVE")
 				  sleep(1000)
@@ -231,7 +314,7 @@ Func Looptime()
 				  sleep(1000)
 				  send("{Enter}")
 				  send("bind p ACTIVATE_TOOL2")
-				 sleep(1000)
+				  sleep(1000)
 				  send("{Enter}")
 				  sleep(1000)
 				  send("{Enter}")
@@ -248,25 +331,37 @@ Func Looptime()
 				  send("bind m ACTIVATE_TOOL5")
 				  sleep(1000)
 				  send("{Enter}")
+				  sleep(1000)
+				  send("{Enter}")
+				  send("bind j ACTIVATE_TOOL6")
+				  sleep(1000)
+				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
-			   Send("o")
-			   Send("1")
-			   sleep(100)
-			   Send("p")
-			   Send("1")
-			   sleep(100)
-			   Send("k")
-			   Send("1")
-			   sleep(100)
-			   Send("l")
-			   Send("1")
-			   sleep(100)
-			   Send("m")
-			   Send("1")
-			   sleep(100)
-			   Send("2")
+			   sleep(1000)
+			   $state = WinGetState("Wurm Online 3.1.77-4859", "")
+			   WinActivate("Wurm Online 3.1.77-4859", "")
+			   WinWaitActive("Wurm Online 3.1.77-4859")
+			   BlockInput(1)
+			   If ($lumptimer > 40) Then
+				  MouseClickDrag("left",$lposx1,$lposy1,$lposx2,$posy2)
+				  Sleep(100)
+				  MouseClickDrag("left",$lposx2,($lposy2+8),$lposx1,$lposy1)
+				  $lumptimer = 0
+			   EndIf 
+			   if ( $citem < $itemnumber ) then
+				$citem = $citem +1
+				else
+				$citem = 1
+				endif
+				call("Improveitem", $citem)
+			   
+			   BlockInput(0)
+			   $lumptimer = $lumptimer + 1
+			   If (NOT($state = 8)) Then
+			   ; WinSetState("Wurm Online 3.1.77-4859", "", @SW_MINIMIZE)
+			   EndIf
 			   Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
@@ -275,6 +370,21 @@ Func Looptime()
 	  Endswitch
    WEnd
 Endfunc
+Func getwater ()
+ if ($loopcounter>20) then
+ $loopcounter=0
+ BlockInput(1)
+ MouseMove($wposx1,$wposy1)
+ sleep(1000 + Random(0,1000))
+ MouseClick("right")
+ sleep(1000 + Random(0,1000))
+ MouseMove($wposx2,$wposy2)
+ sleep(1000 + Random(0,1000))
+ MouseClick("left")
+ BlockInput(0)
+ sleep(2000 + Random(0,1000))
+ endif
+EndFunc
 ;1.3.2 Creation Function
 Func Creation()
    sleep(100  + Random(0,1000))
@@ -322,11 +432,62 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    MouseClick("left")
    Sleep(500 + Random(0,250))
    Send("{LShift up}")
+   MouseClickDrag("left",$posx6,($posy6),$posx2,$posy2)
    Sleep(500 + Random(0,250))
    Next
-   MouseClickDrag("left",$posx6,($posy6),$posx2,$posy2)
    BlockInput(0)
    endif
+EndFunc
+;1.3.3 Improvement Function
+Func Improveitem ($a)
+
+	Switch $a
+		Case 1
+				$ps1 = $itemposx1
+				$ps2 = $itemposy1
+		Case 2
+				$ps1 = $itemposx2
+				$ps2 = $itemposy2
+		Case 3
+				$ps1 = $itemposx3
+				$ps2 = $itemposy3
+		Case 4
+				$ps1 = $itemposx4
+				$ps2 = $itemposy4
+		Case 5
+				$ps1 = $itemposx5
+				$ps2 = $itemposy5
+		Case 6
+				$ps1 = $itemposx6
+				$ps2 = $itemposy6
+	Endswitch
+	MouseMove($ps1,$ps2)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "o")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "p")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "k")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "l")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "m")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "j")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   sleep(100)
+			   ControlSend("Wurm Online 3.1.77-4859", "", "", "2")
+			   sleep(100)
 EndFunc
 ;2.0 GUI part of code
 #include <ButtonConstants.au3>
@@ -337,32 +498,28 @@ EndFunc
 #include <WindowsConstants.au3>
 ;2.1 GUI form
 #Region ### START Koda GUI section ###
-$Form1_1 = GUICreate("Bob The Builder v1.06", 411, 335, 251, 180)
-$Tabpointclick = GUICtrlCreateTab(0, 0, 401, 329)
-$PointClick = GUICtrlCreateTabItem("Point and Click")
-$GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 121)
-$RadioMining = GUICtrlCreateRadio("Mining", 28, 49, 57, 17)
-$RadioFishing = GUICtrlCreateRadio("Fishing", 28, 73, 57, 17)
-$RadioTracking = GUICtrlCreateRadio("Tracking", 28, 97, 65, 17)
-$RadDigging5 = GUICtrlCreateRadio("Digging", 24, 120, 113, 17)
+$Form1_1 = GUICreate("Bob The Builder v1.07", 450, 371, 259, 142)
+$TabMainMen = GUICtrlCreateTab(0, 0, 433, 217)
+$Main = GUICtrlCreateTabItem("Main Menu")
+$GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 161)
+$RadioMining = GUICtrlCreateRadio("Mining", 12, 41, 57, 17)
+$RadioFishing = GUICtrlCreateRadio("Fishing", 12, 57, 57, 17)
+$RadioTracking = GUICtrlCreateRadio("Tracking", 12, 73, 65, 17)
+$RadDigging5 = GUICtrlCreateRadio("Digging", 8, 104, 113, 17)
+$RadCreation4 = GUICtrlCreateRadio("Creation", 8, 88, 113, 17)
+$RadImprovement6 = GUICtrlCreateRadio("Improvement", 8, 120, 113, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupAuto_walkpointclick = GUICtrlCreateGroup("", 116, 33, 225, 49)
-$LblAuto_walkpointandclick = GUICtrlCreateLabel("Auto_Walk", 124, 49, 57, 17)
-$RadioAutoWalkOnPointclick = GUICtrlCreateRadio("On", 188, 49, 41, 17)
-$Radioauto_walkoffpointclick = GUICtrlCreateRadio("Off", 236, 49, 65, 17)
+$GroupAuto_walkpointclick = GUICtrlCreateGroup("", 188, 33, 225, 49)
+$LblAuto_walkpointandclick = GUICtrlCreateLabel("Auto_Walk", 196, 49, 57, 17)
+$RadioAutoWalkOnPointclick = GUICtrlCreateRadio("On", 260, 49, 41, 17)
+$Radioauto_walkoffpointclick = GUICtrlCreateRadio("Off", 308, 49, 65, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Groupcycle_timepointclick = GUICtrlCreateGroup("", 116, 89, 225, 65)
-$LblCycle_timepointclick = GUICtrlCreateLabel("Cycle Time", 132, 105, 56, 17)
-$InputCycleTimepointclick = GUICtrlCreateInput("Insert Cycle Time", 204, 105, 121, 21)
+$GroupActio = GUICtrlCreateGroup("Action", 188, 81, 225, 49)
+$InpAction = GUICtrlCreateInput("", 208, 96, 129, 21)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupStopstartpointclick = GUICtrlCreateGroup("", 12, 209, 345, 57)
-$BtnStartpointclick = GUICtrlCreateButton("Start", 76, 225, 75, 25)
-$Btnstoppointclick = GUICtrlCreateButton("Stop", 188, 225, 75, 25)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupTimelimitpointclick = GUICtrlCreateGroup("", 4, 153, 345, 49)
-$Inputtimelimitpointclick = GUICtrlCreateInput("", 212, 169, 121, 21)
-$RadioTimelimitpointclick = GUICtrlCreateRadio("Time Limit", 20, 177, 73, 17)
-$RadioCyclelimitpointclick = GUICtrlCreateRadio("Cycle Limit", 108, 177, 81, 17)
+$Group1 = GUICtrlCreateGroup("Drink", 184, 136, 233, 65)
+$BtnWaterlocation = GUICtrlCreateButton("Inventory", 200, 160, 75, 25)
+$BtnDrink = GUICtrlCreateButton("Drink", 280, 160, 75, 25)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Creation = GUICtrlCreateTabItem("Creation")
 $GroupMousesetcreation = GUICtrlCreateGroup("Setting", 8, 32, 161, 177)
@@ -373,84 +530,99 @@ $BtnMenu2 = GUICtrlCreateButton("Menu2", 88, 144, 67, 25)
 $BtnMenu3 = GUICtrlCreateButton("Menu3", 16, 176, 67, 25)
 $Btnfinalbulk = GUICtrlCreateButton("Set Final Bulk", 32, 80, 115, 25)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupCycletimeCreation = GUICtrlCreateGroup("", 180, 153, 201, 57)
-$LblCycle_time = GUICtrlCreateLabel("Cycle Time", 188, 169, 56, 17)
-$InputCycleTimeCreation = GUICtrlCreateInput("Insert Cycle Time", 252, 169, 121, 21)
+$GroupIteration = GUICtrlCreateGroup("Iteration", 192, 40, 193, 41)
+$InputIteration = GUICtrlCreateInput("1", 216, 56, 121, 21)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Grouptimelimitcreation = GUICtrlCreateGroup("", 12, 209, 345, 49)
-$Inputtimelimitcreation = GUICtrlCreateInput("", 220, 225, 121, 21)
-$RadioTimelimitcreation = GUICtrlCreateRadio("Time Limit", 20, 225, 73, 17)
-$Radiocyclelimitcreation = GUICtrlCreateRadio("Cycle Limit", 116, 225, 81, 17)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$groupstopstartcration = GUICtrlCreateGroup("", 12, 257, 345, 57)
-$Btnstartcreation = GUICtrlCreateButton("Start", 76, 273, 75, 25)
-$Btnstopcreation = GUICtrlCreateButton("Stop", 188, 273, 75, 25)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupAction = GUICtrlCreateGroup("Action", 180, 41, 201, 49)
-$InputNumberAction = GUICtrlCreateInput("", 200, 56, 129, 21)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupIteration = GUICtrlCreateGroup("Iteration", 184, 96, 193, 41)
-$InputIteration = GUICtrlCreateInput("1", 208, 112, 121, 21)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Creation_Settings = GUICtrlCreateTabItem("Creation_Settings")
-$GroupNumberFinalItem = GUICtrlCreateGroup("FinalItems", 24, 216, 345, 57)
-$LblFinalItem = GUICtrlCreateLabel("#item to the Final Bulk", 32, 248, 109, 17)
-$InptFinalItemBulk = GUICtrlCreateInput("2", 160, 248, 57, 21)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupInitialItem = GUICtrlCreateGroup("", 32, 40, 329, 89)
-$Lbltoolchange = GUICtrlCreateLabel("Change Tool?", 40, 56, 71, 17)
-$Radchangetoolyes = GUICtrlCreateRadio("Yes", 160, 56, 49, 17)
-$Radchangetoolno = GUICtrlCreateRadio("No", 120, 56, 41, 17)
+$Groupchangetool = GUICtrlCreateGroup("", 168, 80, 257, 73)
+$Lblchangetool = GUICtrlCreateLabel("Change Tool?", 176, 96, 71, 17)
+$RadChangeToolYes = GUICtrlCreateRadio("Yes", 296, 96, 49, 17)
+$RadChangetoolNo = GUICtrlCreateRadio("No", 256, 96, 41, 17)
 GUICtrlSetState(-1, $GUI_CHECKED)
-$Lbleachchangetool = GUICtrlCreateLabel("Each", 56, 96, 29, 17)
-$InputChangetoolcycle = GUICtrlCreateInput("1", 104, 96, 25, 21)
-$LblCyclechangetool = GUICtrlCreateLabel("Cycles", 144, 96, 35, 17)
-$BtnSetToolPosition = GUICtrlCreateButton("SetTool", 200, 72, 75, 25)
-$BtnNewtool = GUICtrlCreateButton("NewTool", 280, 72, 75, 25)
+$lblchangetooleach = GUICtrlCreateLabel("Each", 192, 120, 29, 17)
+$Inptooleach = GUICtrlCreateInput("1", 240, 120, 25, 21)
+$LblCycles = GUICtrlCreateLabel("Cycles", 280, 120, 35, 17)
+$BtnSetTool = GUICtrlCreateButton("SetTool", 344, 96, 75, 25)
+$BtnNewTool = GUICtrlCreateButton("NewTool", 344, 120, 75, 25)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupBulkBin = GUICtrlCreateGroup("Bulk Bin", 32, 144, 329, 57)
-$RadBulkBinNo = GUICtrlCreateRadio("No", 40, 160, 49, 17)
+$GroupBulkBin = GUICtrlCreateGroup("Bulk Bin", 176, 152, 233, 57)
+$RadBBNo = GUICtrlCreateRadio("No", 192, 168, 49, 17)
 GUICtrlSetState(-1, $GUI_CHECKED)
-$RadBulkBinYes = GUICtrlCreateRadio("Yes", 104, 160, 49, 17)
-$InputBulkBin = GUICtrlCreateInput("Pick #", 168, 160, 121, 21)
+$RadBBYes = GUICtrlCreateRadio("Yes", 240, 168, 49, 17)
+$InpBBPick = GUICtrlCreateInput("Pick #", 184, 184, 105, 21)
+$InpBBDrop = GUICtrlCreateInput("Drop #", 304, 184, 73, 21)
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+$Improvement = GUICtrlCreateTabItem("Improvement")
+$GroupSetLocationImprovement = GUICtrlCreateGroup("", 24, 40, 145, 145)
+$BtnInventoryimprovementlump = GUICtrlCreateButton("Inventory", 48, 96, 75, 25)
+$BtnNewLump = GUICtrlCreateButton("New Lump", 48, 128, 75, 25)
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+$GroupItemtoImprove = GUICtrlCreateGroup("Item to Improve", 200, 48, 185, 105)
+$Btnitem1 = GUICtrlCreateButton("1", 216, 80, 43, 25)
+$btnitem2 = GUICtrlCreateButton("2", 264, 80, 43, 25)
+$Btnitem3 = GUICtrlCreateButton("3", 320, 80, 43, 25)
+$Btnitem4 = GUICtrlCreateButton("4", 216, 112, 43, 25)
+$Btnitem5 = GUICtrlCreateButton("5", 264, 112, 43, 25)
+$Btnitem6 = GUICtrlCreateButton("6", 320, 112, 43, 25)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
+$limitgroup = GUICtrlCreateGroup("", 8, 216, 185, 97)
+$Cycleinput = GUICtrlCreateInput("", 40, 272, 121, 21)
+$RadTimeLimit = GUICtrlCreateRadio("Time Limit", 24, 240, 73, 17)
+$RadCyclelimit = GUICtrlCreateRadio("Cycle Limit", 112, 240, 81, 17)
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+$GroupStopstartpointclick = GUICtrlCreateGroup("", 40, 312, 345, 57)
+$BtnStartpointclick = GUICtrlCreateButton("Start", 104, 328, 75, 25)
+$Btnstoppointclick = GUICtrlCreateButton("Stop", 216, 328, 75, 25)
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+$GroupCycletime = GUICtrlCreateGroup("", 200, 248, 225, 65)
+$LblCycletime = GUICtrlCreateLabel("Cycle Time", 216, 264, 56, 17)
+$InpCycletime = GUICtrlCreateInput("Insert Cycle Time", 288, 264, 121, 21)
+GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 ;2.2 OnEvent Programing
-HotKeySet("^+{h}","takeposition")
+HotKeySet("^{h}","takeposition")
 GUISetOnEvent($GUI_EVENT_CLOSE, "CLOSEClicked")
 Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode 
-   ;2.2.1 Tab 1 Point and Click
+   ;2.2.1 Tab 1 Main Menu
 GUICtrlSetOnEvent($RadioMining, "Mine1")
 GUICtrlSetOnEvent($RadioFishing, "Fish2")
 GUICtrlSetOnEvent($RadioTracking, "Track3")
 GUICtrlSetOnEvent($RadDigging5, "Digging5")
+GUICtrlSetOnEvent($RadCreation4, "Creation4")
+GUICtrlSetOnEvent($RadImprovement6, "Improvement6")
 GUICtrlSetOnEvent($RadioAutoWalkOnPointclick, "Walkon")
 GUICtrlSetOnEvent($Radioauto_walkoffpointclick, "Walkoff")
-GUICtrlSetOnEvent($InputCycleTimepointclick, "cyclez1")
+GUICtrlSetOnEvent($InpCycletime, "cyclez")
 GUICtrlSetOnEvent($BtnStartpointclick, "son")
 GUICtrlSetOnEvent($Btnstoppointclick, "soff")
-GUICtrlSetOnEvent($RadioTimelimitpointclick, "ltime")
-GUICtrlSetOnEvent($RadioCyclelimitpointclick, "lcount")
-GUICtrlSetOnEvent($Inputtimelimitpointclick, "lset")
+GUICtrlSetOnEvent($RadTimeLimit, "ltime")
+GUICtrlSetOnEvent($RadCyclelimit, "lcount")
+GUICtrlSetOnEvent($Cycleinput, "lset")
+GUICtrlSetOnEvent($BtnWaterlocation, "water1")
+GUICtrlSetOnEvent($BtnDrink, "water2")
+GUICtrlSetOnEvent($InpAction, "Action")
    ;2.2.2 Tab 2 Creation
 GUICtrlSetOnEvent($Btninitialbulk, "InitialBulk")
 GUICtrlSetOnEvent($Btninventoryloc, "Inventory")
-GUICtrlSetOnEvent($InputCycleTimeCreation, "cyclez2")
-GUICtrlSetOnEvent($RadioTimelimitcreation, "ltime")
-GUICtrlSetOnEvent($Radiocyclelimitcreation, "lcount")
-GUICtrlSetOnEvent($Btnstartcreation, "son2")
-GUICtrlSetOnEvent($Btnstopcreation, "soff")
-GUICtrlSetOnEvent($Inputtimelimitcreation, "lset")
 GUICtrlSetOnEvent($BtnMenu1, "Menu1")
 GUICtrlSetOnEvent($BtnMenu2, "Menu2")
 GUICtrlSetOnEvent($BtnMenu3, "Menu3")
 GUICtrlSetOnEvent($Btnfinalbulk, "FinalBulk")
-GUICtrlSetOnEvent($InputNumberAction, "Action")
 GUICtrlSetOnEvent($InputIteration, "SetIteration")
-   ;2.2.3 Tab 3 Creation Setting
-GUICtrlSetOnEvent($InptFinalItemBulk, "SetFinalItemBulk")
+GUICtrlSetOnEvent($RadBBNo, "BBNO")
+GUICtrlSetOnEvent($RadBBYes, "BBYES")
+GUICtrlSetOnEvent($InpBBPick, "Action2")
+GUICtrlSetOnEvent($InpBBDrop, "SetFinalItemBulk")
+   ;2.2.3 Tab 3 Improvement
+GUICtrlSetOnEvent($BtnInventoryimprovementlump, "SetInventorylump")
+GUICtrlSetOnEvent($BtnNewLump, "SetForgelump")
+GUICtrlSetOnEvent($Btnitem1, "Setitem1")
+GUICtrlSetOnEvent($Btnitem2, "Setitem2")
+GUICtrlSetOnEvent($Btnitem3, "Setitem3")
+GUICtrlSetOnEvent($Btnitem4, "Setitem4")
+GUICtrlSetOnEvent($Btnitem5, "Setitem5")
+GUICtrlSetOnEvent($Btnitem6, "Setitem6")
 Func CLOSEClicked()
    Exit
 EndFunc
@@ -467,9 +639,17 @@ Func Track3()
 	  Call("setOption", 3)
 	  Call("ena")
    EndFunc
+      Func Creation4()
+	  Call("setOption", 4)
+	  Call("dis")
+   EndFunc
    Func Digging5()
 	  Call("setOption", 5)
 	  Call("ena")
+   EndFunc
+      Func Improvement6()
+	  Call("setOption", 6)
+	  Call("dis")
    EndFunc
 Func Walkon()
 	  Call("WalkSet", true)
@@ -477,11 +657,8 @@ EndFunc
 Func Walkoff()
 	  Call("WalkSet", false)
 EndFunc
-Func cyclez1()
-	  call("setCycle",GUICTrlRead($InputCycleTimepointclick))
-EndFunc
-Func cyclez2()
-	  call("setCycle",GUICTrlRead($InputCycleTimeCreation))
+Func cyclez()
+	  call("setCycle",GUICTrlRead($InpCycletime))
 EndFunc
 Func son()
 	  call("lset")
@@ -502,7 +679,7 @@ Func lcount()
 	  $Counting=true
    EndFunc
 Func lset()
-	  Call("setLimit",GUICTrlRead($Inputtimelimitcreation))
+	  Call("setLimit",GUICTrlRead($Cycleinput))
    EndFunc
 Func InitialBulk()
 	  Call("positionset1");
@@ -522,19 +699,63 @@ Func Menu3()
 Func Inventory()
 	  Call("positionset6");
 EndFunc
+Func water1()
+	  Call("positionsetwater1");
+EndFunc
+Func water2()
+	  Call("positionsetwater2");
+EndFunc
+Func SetInventorylump()
+	  Call("positionsetlump1");
+EndFunc
+Func SetForgelump()
+	  Call("positionsetlump2");
+EndFunc
+Func Setitem1()
+	  Call("positionsetitem1");
+	  Call("setitemnumber",1);
+EndFunc
+Func Setitem2()
+	  Call("positionsetitem2");
+	  Call("setitemnumber",2);
+EndFunc
+Func Setitem3()
+	  Call("positionsetitem3");
+	  Call("setitemnumber",3);
+EndFunc
+Func Setitem4()
+	  Call("positionsetitem4");
+	  Call("setitemnumber",4);
+EndFunc
+Func Setitem5()
+	  Call("positionsetitem5");
+	  Call("setitemnumber",5);
+EndFunc
+Func Setitem6()
+	  Call("positionsetitem6");
+	  Call("setitemnumber",6);
+EndFunc
+Func BBNO()
+	  Call("setBB", false);
+EndFunc
+Func BBYES()
+	  Call("setBB", true);
+EndFunc
 Func Action()
-	  Call("setcreationcount",GUICTrlRead($InputNumberAction))
+	  Call("setcreationcount",GUICTrlRead($InpAction))
+   EndFunc
+   Func Action2()
+	  Call("setcreationcount",GUICTrlRead($InpBBPick))
    EndFunc
    Func setiteration()
 	  Call("SetIterationcount",GUICTrlRead($InputIteration))
    EndFunc
       Func setfinalitembulk()
-	  Call("Finalitembulk",GUICTrlRead($InptFinalItemBulk))
+	  Call("Finalitembulk",GUICTrlRead($InpBBDrop))
 EndFunc
 While 1
 	  Call("Looptime")
 
 WEnd
-
 
 
