@@ -1,4 +1,4 @@
-;Version 1.07
+;Version 1.07b
 ; Menu
 ; 1.0 BackEnd
    ; 1.1 Variables
@@ -70,17 +70,26 @@ Global $finalitembulk=2
 Global $lumptimer=0
 Global $state=0
 Global $BB=true
+Global $Beep=false
+Global $Minimize=false
 Global $itemnumber=1
 Global $loopcounter=0
 Global $ps1=0
 Global $ps2=0
 Global $citem=0
+Global $state= WinGetState("Wurm Online 3.1.77-4859", "")
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
 EndFunc
 Func setBB($a)
    $BB =$a
+EndFunc
+Func setminimize($a)
+   $Minimize =$a
+EndFunc
+Func setbeep($a)
+   $Beep =$a
 EndFunc
 Func setitemnumber($a)
    if $a > $itemnumber then
@@ -199,6 +208,24 @@ Func positionsetitem6 ()
    $itemposx6 = $posx
    $itemposy6 = $posy
 EndFunc
+Func Beeping()
+if ($Beep) then
+Beep(500)
+Endif
+EndFunc
+Func Minimize($a)
+if ($Minimize) then
+	if ($a) then
+		$state = WinGetState("Wurm Online 3.1.77-4859", "")
+		WinActivate("Wurm Online 3.1.77-4859", "")
+		WinWaitActive("Wurm Online 3.1.77-4859")
+	else
+		If (NOT($state = 8)) Then
+		WinSetState("Wurm Online 3.1.77-4859", "", @SW_MINIMIZE)
+		EndIf
+	Endif
+Endif
+EndFunc
 Func BossCount()
    if ($limit) Then
    	  if ($time_count>0)AND($Counting) Then
@@ -295,8 +322,7 @@ Func Looptime()
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
-				  WinActivate("Wurm Online 3.1.77-4859", "")
-				  WinWaitActive("Wurm Online 3.1.77-4859")
+				  call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 IMPROVE")
 				  sleep(1000)
@@ -340,14 +366,13 @@ Func Looptime()
 				  $binded=True
 			   EndIf
 			   sleep(1000)
-			   $state = WinGetState("Wurm Online 3.1.77-4859", "")
-			   WinActivate("Wurm Online 3.1.77-4859", "")
-			   WinWaitActive("Wurm Online 3.1.77-4859")
+			   call("Beeping")
+			   call("Minimize", true)
 			   BlockInput(1)
 			   If ($lumptimer > 40) Then
-				  MouseClickDrag("left",$lposx1,$lposy1,$lposx2,$posy2)
-				  Sleep(100)
-				  MouseClickDrag("left",$lposx2,($lposy2+8),$lposx1,$lposy1)
+				  MouseClickDrag("left",$lposx1,$lposy1,$lposx2,$lposy2)
+				  Sleep(1000 + Random(0,1000))
+				  MouseClickDrag("left",$lposx2,($lposy2+5),$lposx1,$lposy1)
 				  $lumptimer = 0
 			   EndIf 
 			   if ( $citem < $itemnumber ) then
@@ -359,9 +384,7 @@ Func Looptime()
 			   
 			   BlockInput(0)
 			   $lumptimer = $lumptimer + 1
-			   If (NOT($state = 8)) Then
-			   ; WinSetState("Wurm Online 3.1.77-4859", "", @SW_MINIMIZE)
-			   EndIf
+			   call("Minimize", false)
 			   Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
@@ -371,6 +394,7 @@ Func Looptime()
    WEnd
 Endfunc
 Func getwater ()
+ $loopcounter = $loopcounter + 1
  if ($loopcounter>20) then
  $loopcounter=0
  BlockInput(1)
@@ -498,7 +522,7 @@ EndFunc
 #include <WindowsConstants.au3>
 ;2.1 GUI form
 #Region ### START Koda GUI section ###
-$Form1_1 = GUICreate("Bob The Builder v1.07", 450, 371, 259, 142)
+$Form1_1 = GUICreate("Bob The Builder v1.07b", 450, 371, 259, 142)
 $TabMainMen = GUICtrlCreateTab(0, 0, 433, 217)
 $Main = GUICtrlCreateTabItem("Main Menu")
 $GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 161)
@@ -514,12 +538,19 @@ $LblAuto_walkpointandclick = GUICtrlCreateLabel("Auto_Walk", 196, 49, 57, 17)
 $RadioAutoWalkOnPointclick = GUICtrlCreateRadio("On", 260, 49, 41, 17)
 $Radioauto_walkoffpointclick = GUICtrlCreateRadio("Off", 308, 49, 65, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupActio = GUICtrlCreateGroup("Action", 188, 81, 225, 49)
-$InpAction = GUICtrlCreateInput("", 208, 96, 129, 21)
+$Group1 = GUICtrlCreateGroup("Drink", 184, 96, 233, 65)
+$BtnWaterlocation = GUICtrlCreateButton("Inventory", 200, 120, 75, 25)
+$BtnDrink = GUICtrlCreateButton("Drink", 280, 120, 75, 25)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group1 = GUICtrlCreateGroup("Drink", 184, 136, 233, 65)
-$BtnWaterlocation = GUICtrlCreateButton("Inventory", 200, 160, 75, 25)
-$BtnDrink = GUICtrlCreateButton("Drink", 280, 160, 75, 25)
+$GroupBeep = GUICtrlCreateGroup("Beep", 112, 32, 65, 73)
+$RadBeepoff = GUICtrlCreateRadio("Off", 120, 56, 49, 17)
+GUICtrlSetState(-1, $GUI_CHECKED)
+$RadBeepon = GUICtrlCreateRadio("On", 120, 80, 49, 17)
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+$GroupMinimize = GUICtrlCreateGroup("Minimize", 112, 104, 65, 73)
+$RadMinimizeoff = GUICtrlCreateRadio("Off", 120, 128, 49, 17)
+GUICtrlSetState(-1, $GUI_CHECKED)
+$RadMinimizeOn = GUICtrlCreateRadio("On", 120, 152, 49, 17)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Creation = GUICtrlCreateTabItem("Creation")
 $GroupMousesetcreation = GUICtrlCreateGroup("Setting", 8, 32, 161, 177)
@@ -601,7 +632,10 @@ GUICtrlSetOnEvent($RadCyclelimit, "lcount")
 GUICtrlSetOnEvent($Cycleinput, "lset")
 GUICtrlSetOnEvent($BtnWaterlocation, "water1")
 GUICtrlSetOnEvent($BtnDrink, "water2")
-GUICtrlSetOnEvent($InpAction, "Action")
+GUICtrlSetOnEvent($RadBeepoff, "beepoff")
+GUICtrlSetOnEvent($RadBeepon, "beepon")
+GUICtrlSetOnEvent($RadMinimizeoff, "minoff")
+GUICtrlSetOnEvent($RadMinimizeOn, "minon")
    ;2.2.2 Tab 2 Creation
 GUICtrlSetOnEvent($Btninitialbulk, "InitialBulk")
 GUICtrlSetOnEvent($Btninventoryloc, "Inventory")
@@ -612,7 +646,7 @@ GUICtrlSetOnEvent($Btnfinalbulk, "FinalBulk")
 GUICtrlSetOnEvent($InputIteration, "SetIteration")
 GUICtrlSetOnEvent($RadBBNo, "BBNO")
 GUICtrlSetOnEvent($RadBBYes, "BBYES")
-GUICtrlSetOnEvent($InpBBPick, "Action2")
+GUICtrlSetOnEvent($InpBBPick, "Action")
 GUICtrlSetOnEvent($InpBBDrop, "SetFinalItemBulk")
    ;2.2.3 Tab 3 Improvement
 GUICtrlSetOnEvent($BtnInventoryimprovementlump, "SetInventorylump")
@@ -741,10 +775,19 @@ EndFunc
 Func BBYES()
 	  Call("setBB", true);
 EndFunc
+Func minoff()
+	  Call("setminimize", false);
+EndFunc
+Func minon()
+	  Call("setminimize", true);
+EndFunc
+Func beepoff()
+	  Call("setbeep", false);
+EndFunc
+Func beepon()
+	  Call("setbeep", true);
+EndFunc
 Func Action()
-	  Call("setcreationcount",GUICTrlRead($InpAction))
-   EndFunc
-   Func Action2()
 	  Call("setcreationcount",GUICTrlRead($InpBBPick))
    EndFunc
    Func setiteration()

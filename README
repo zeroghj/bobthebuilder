@@ -1,6 +1,18 @@
-Version 1.07 of Bob the Builder
+Version 1.07b of Bob the Builder
 
 CHANGELOG
+-----------------------------
+1.07b
+-----------------------------
+General
+#Implemented Beeping option for Improvement
+#Implemented Minimizing and Maximizing option for Improvement
+
+Bugfix
+#Fixed a bug that made it impossible to drink water
+#Fixed a bug where the lump change wouldn't be completed properly
+#removed the action option from the main menu, has it was useless
+
 -----------------------------
 1.07
 -----------------------------
