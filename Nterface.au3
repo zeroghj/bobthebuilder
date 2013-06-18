@@ -1,4 +1,4 @@
-;Version 1.07b
+;Version 1.07c
 ; Menu
 ; 1.0 BackEnd
    ; 1.1 Variables
@@ -82,14 +82,14 @@ Global $state= WinGetState("Wurm Online 3.1.77-4859", "")
 Func setCycle($a)
    $Cycle_time=($a*1000)
 EndFunc
-Func setBB($a)
-   $BB =$a
+Func setBB($b)
+   $BB =$b
 EndFunc
-Func setminimize($a)
-   $Minimize =$a
+Func setminimize($c)
+   $Minimize =$c
 EndFunc
-Func setbeep($a)
-   $Beep =$a
+Func setbeep($d)
+   $Beep =$d
 EndFunc
 Func setitemnumber($a)
    if $a > $itemnumber then
@@ -108,6 +108,7 @@ EndFunc
 Func setOption($a)
    $Option=$a
    $binded=false
+   $looping=false
 EndFunc
 Func setOn()
    $looping=True
@@ -210,21 +211,21 @@ Func positionsetitem6 ()
 EndFunc
 Func Beeping()
 if ($Beep) then
-Beep(500)
+Beep(500,500)
 Endif
 EndFunc
 Func Minimize($a)
-if ($Minimize) then
-	if ($a) then
+if ($a) then
+	call("Beeping")
+	if ($Minimize) then
 		$state = WinGetState("Wurm Online 3.1.77-4859", "")
 		WinActivate("Wurm Online 3.1.77-4859", "")
 		WinWaitActive("Wurm Online 3.1.77-4859")
-	else
-		If (NOT($state = 8)) Then
+	EndIf
+Endif
+		If (($Minimize)AND(NOT($a))AND(NOT($state = 8))) Then
 		WinSetState("Wurm Online 3.1.77-4859", "", @SW_MINIMIZE)
 		EndIf
-	Endif
-Endif
 EndFunc
 Func BossCount()
    if ($limit) Then
@@ -246,16 +247,21 @@ Func Looptime()
    while ($looping)
 	  sleep(5000+Random(0,1000))
 	  if ($walk AND $looping) Then
+		 call("Minimize", true)
 		 Send("{w down}")
 		 sleep(1000+Random(0,500))
 		 Send("{w up}")
+		 call("Minimize", false)
 	  EndIf
+	  if ($looping) Then
 	  call("getwater")
+	  Endif
 	  Switch $Option
 	  Case 1
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
+					call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 mine_forward")
 				  sleep(1000)
@@ -263,8 +269,10 @@ Func Looptime()
 				  send("{F1}")
 				  $binded=True
 			   EndIf
+			   call("Minimize", true)
 			   Send("1")
-			   ;Call("BossCount")
+			   call("Minimize", false)
+			   Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
 		 Next
@@ -272,6 +280,7 @@ Func Looptime()
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
+			   call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 fish")
 				  sleep(1000)
@@ -279,8 +288,10 @@ Func Looptime()
 				  send("{F1}")
 				  $binded=True
 			   EndIf
+			   call("Minimize", true)
 			   Send("1")
 			   Call("BossCount")
+			   call("Minimize", false)
 			   sleep(Random(0,20000))
 			EndIf
 		 Next
@@ -288,6 +299,7 @@ Func Looptime()
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
+			   call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 track")
 				  sleep(1000)
@@ -295,7 +307,9 @@ Func Looptime()
 				  send("{F1}")
 				  $binded=True
 			   EndIf
+			   call("Minimize", true)
 			   Send("1")
+			   call("Minimize", false)
 			   Call("BossCount")
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
@@ -306,6 +320,7 @@ Func Looptime()
 		 For $i =0 to 5
 			if($looping) Then
 			   if (NOT($binded)) Then
+			   call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 dig")
 				  sleep(1000)
@@ -315,6 +330,7 @@ Func Looptime()
 			   EndIf
 			   Send("1")
 			   Call("BossCount")
+			   call("Minimize", false)
 			   sleep($Cycle_time + Random(0,1000))
 			EndIf
 		 Next
@@ -325,55 +341,57 @@ Func Looptime()
 				  call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 IMPROVE")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind 2 REPAIR")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind o ACTIVATE_TOOL1")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind p ACTIVATE_TOOL2")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind k ACTIVATE_TOOL3")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind l ACTIVATE_TOOL4")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind m ACTIVATE_TOOL5")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("bind j ACTIVATE_TOOL6")
-				  sleep(1000)
+				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("{F1}")
 				  $binded=True
 			   EndIf
-			   sleep(1000)
-			   call("Beeping")
+			   Endif
+			   If ($looping) Then
+			   sleep(1000 + Random(0,1000))
 			   call("Minimize", true)
 			   BlockInput(1)
 			   If ($lumptimer > 40) Then
 				  MouseClickDrag("left",$lposx1,$lposy1,$lposx2,$lposy2)
 				  Sleep(1000 + Random(0,1000))
-				  MouseClickDrag("left",$lposx2,($lposy2+5),$lposx1,$lposy1)
+				  MouseClickDrag("left",$lposx2,($lposy2+8),$lposx1,$lposy1)
 				  $lumptimer = 0
+				  sleep(1000 + Random(0,1000))
 			   EndIf 
 			   if ( $citem < $itemnumber ) then
 				$citem = $citem +1
@@ -395,8 +413,9 @@ Func Looptime()
 Endfunc
 Func getwater ()
  $loopcounter = $loopcounter + 1
- if ($loopcounter>20) then
+ if ($loopcounter>2) then
  $loopcounter=0
+ call("Minimize", true)
  BlockInput(1)
  MouseMove($wposx1,$wposy1)
  sleep(1000 + Random(0,1000))
@@ -406,21 +425,28 @@ Func getwater ()
  sleep(1000 + Random(0,1000))
  MouseClick("left")
  BlockInput(0)
+ call("Minimize", false)
  sleep(2000 + Random(0,1000))
  endif
 EndFunc
 ;1.3.2 Creation Function
 Func Creation()
+If ($looping) Then
    sleep(100  + Random(0,1000))
    $iterate=0
+   call("Minimize, true")
 BlockInput(1)
 MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    sleep(1000  + Random(0,1000))
    Send($CreationCount)
    Send("{Enter}")
    BlockInput(0)
+   Endif
+   call("Minimize, false")
    sleep(1000  + Random(0,1000))
    While ($iterate <$iteration)
+   If ($looping) Then
+		call("Minimize, true")
 	  BlockInput(1)
 	  sleep(100  + Random(0,1000))
 	  MouseMove($posx6,$posy6)
@@ -439,11 +465,14 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
 	  Sleep(500  + Random(0,250))
 	  MouseClick("left")
 	  BlockInput(0)
+	  call("Minimize, false")
 	  Sleep($Cycle_Time  + Random(0,3000))
 	  $iterate= $iterate+1
+	  Endif
    Wend
    if ($looping) then
 	  sleep(100  + Random(0,1000))
+	  call("Minimize, true")
    BlockInput(1)
    MouseMove($posx6,$posy6)
    MouseClick("left")
@@ -460,6 +489,7 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    Sleep(500 + Random(0,250))
    Next
    BlockInput(0)
+   call("Minimize, false")
    endif
 EndFunc
 ;1.3.3 Improvement Function
@@ -522,7 +552,7 @@ EndFunc
 #include <WindowsConstants.au3>
 ;2.1 GUI form
 #Region ### START Koda GUI section ###
-$Form1_1 = GUICreate("Bob The Builder v1.07b", 450, 371, 259, 142)
+$Form1_1 = GUICreate("Bob The Builder v1.07c", 450, 371, 259, 142)
 $TabMainMen = GUICtrlCreateTab(0, 0, 433, 217)
 $Main = GUICtrlCreateTabItem("Main Menu")
 $GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 161)
@@ -697,11 +727,6 @@ EndFunc
 Func son()
 	  call("lset")
 	  call("setOn")
-EndFunc
-Func son2()
-	  call("lset")
-	  call("setOn")
-	  call("setOption", 4)
 EndFunc
 Func soff()
 	  call("setOff")

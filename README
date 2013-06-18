@@ -1,6 +1,18 @@
-Version 1.07b of Bob the Builder
+Version 1.07c of Bob the Builder
 
 CHANGELOG
+-----------------------------
+1.07c
+-----------------------------
+
+Bugfix
+#Added Randomness
+#Fixed lump change to be more accurate
+#Changed Drinking to happen more often
+#Added the Minimize and Beeping option to every functionality
+#Fixed a bug where while in the loop the change from one function to another would fail
+#The loop now stops faster when the stop button is clicked, especially in creation mode
+
 -----------------------------
 1.07b
 -----------------------------
@@ -16,6 +28,7 @@ Bugfix
 -----------------------------
 1.07
 -----------------------------
+IMPORTANT: Cursor Location Saving is now Ctrl + h !!!
 
 General
 
@@ -126,10 +139,5 @@ to be put into a bulk bin once the work is done
 
 #Program rewriten to Autoit from Java
 -------------------------
-#			#
-#   To Implement next	#
--------------------------
 
-- Timer countdown
-- Improve brick option
 
