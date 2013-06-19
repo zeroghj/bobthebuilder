@@ -1,4 +1,4 @@
-;Version 1.07c
+;Version 1.07d
 ; Menu
 ; 1.0 BackEnd
    ; 1.1 Variables
@@ -77,7 +77,7 @@ Global $loopcounter=0
 Global $ps1=0
 Global $ps2=0
 Global $citem=0
-Global $state= WinGetState("Wurm Online 3.1.77-4859", "")
+Global $state= WinGetState("Wurm Online 3.2", "")
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
@@ -218,13 +218,13 @@ Func Minimize($a)
 if ($a) then
 	call("Beeping")
 	if ($Minimize) then
-		$state = WinGetState("Wurm Online 3.1.77-4859", "")
-		WinActivate("Wurm Online 3.1.77-4859", "")
-		WinWaitActive("Wurm Online 3.1.77-4859")
+		$state = WinGetState("Wurm Online 3.2", "")
+		WinActivate("Wurm Online 3.2", "")
+		WinWaitActive("Wurm Online 3.2")
 	EndIf
 Endif
 		If (($Minimize)AND(NOT($a))AND(NOT($state = 8))) Then
-		WinSetState("Wurm Online 3.1.77-4859", "", @SW_MINIMIZE)
+		WinSetState("Wurm Online 3.2", "", @SW_MINIMIZE)
 		EndIf
 EndFunc
 Func BossCount()
@@ -516,31 +516,31 @@ Func Improveitem ($a)
 				$ps2 = $itemposy6
 	Endswitch
 	MouseMove($ps1,$ps2)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "o")
+			   ControlSend("Wurm Online 3.2", "", "", "o")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   ControlSend("Wurm Online 3.2", "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "p")
+			   ControlSend("Wurm Online 3.2", "", "", "p")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   ControlSend("Wurm Online 3.2", "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "k")
+			   ControlSend("Wurm Online 3.2", "", "", "k")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   ControlSend("Wurm Online 3.2", "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "l")
+			   ControlSend("Wurm Online 3.2", "", "", "l")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   ControlSend("Wurm Online 3.2", "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "m")
+			   ControlSend("Wurm Online 3.2", "", "", "m")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   ControlSend("Wurm Online 3.2", "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "j")
+			   ControlSend("Wurm Online 3.2", "", "", "j")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "1")
+			   ControlSend("Wurm Online 3.2", "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.1.77-4859", "", "", "2")
+			   ControlSend("Wurm Online 3.2", "", "", "2")
 			   sleep(100)
 EndFunc
 ;2.0 GUI part of code
@@ -552,7 +552,7 @@ EndFunc
 #include <WindowsConstants.au3>
 ;2.1 GUI form
 #Region ### START Koda GUI section ###
-$Form1_1 = GUICreate("Bob The Builder v1.07c", 450, 371, 259, 142)
+$Form1_1 = GUICreate("Bob The Builder v1.07d", 450, 371, 259, 142)
 $TabMainMen = GUICtrlCreateTab(0, 0, 433, 217)
 $Main = GUICtrlCreateTabItem("Main Menu")
 $GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 161)
