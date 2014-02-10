@@ -77,7 +77,8 @@ Global $loopcounter=0
 Global $ps1=0
 Global $ps2=0
 Global $citem=0
-Global $state= WinGetState("Wurm Online 3.2", "")
+Global $state= WinGetState("Wurm Online 3.3", "")
+Global $state2= WinGetState("Wurm Online 3.3", "")
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
@@ -218,13 +219,13 @@ Func Minimize($a)
 if ($a) then
 	call("Beeping")
 	if ($Minimize) then
-		$state = WinGetState("Wurm Online 3.2", "")
-		WinActivate("Wurm Online 3.2", "")
-		WinWaitActive("Wurm Online 3.2")
+		$state = WinGetState($state2, "")
+		WinActivate($state2, "")
+		WinWaitActive($state2)
 	EndIf
 Endif
 		If (($Minimize)AND(NOT($a))AND(NOT($state = 8))) Then
-		WinSetState("Wurm Online 3.2", "", @SW_MINIMIZE)
+		WinSetState($state2, "", @SW_MINIMIZE)
 		EndIf
 EndFunc
 Func BossCount()
@@ -516,31 +517,31 @@ Func Improveitem ($a)
 				$ps2 = $itemposy6
 	Endswitch
 	MouseMove($ps1,$ps2)
-			   ControlSend("Wurm Online 3.2", "", "", "o")
+			   ControlSend($state2, "", "", "o")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "1")
+			   ControlSend($state2, "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "p")
+			   ControlSend($state2, "", "", "p")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "1")
+			   ControlSend($state2, "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "k")
+			   ControlSend($state2, "", "", "k")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "1")
+			   ControlSend($state2, "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "l")
+			   ControlSend($state2, "", "", "l")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "1")
+			   ControlSend($state2, "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "m")
+			   ControlSend($state2, "", "", "m")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "1")
+			   ControlSend($state2, "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "j")
+			   ControlSend($state2, "", "", "j")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "1")
+			   ControlSend($state2, "", "", "1")
 			   sleep(100)
-			   ControlSend("Wurm Online 3.2", "", "", "2")
+			   ControlSend($state2, "", "", "2")
 			   sleep(100)
 EndFunc
 ;2.0 GUI part of code
