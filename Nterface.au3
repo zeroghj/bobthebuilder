@@ -414,7 +414,7 @@ Func Looptime()
 Endfunc
 Func getwater ()
  $loopcounter = $loopcounter + 1
- if ($loopcounter>2) then
+ if ($loopcounter>20) then
  $loopcounter=0
  call("Minimize", true)
  BlockInput(1)
