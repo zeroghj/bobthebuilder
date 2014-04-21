@@ -77,8 +77,8 @@ Global $loopcounter=0
 Global $ps1=0
 Global $ps2=0
 Global $citem=0
-Global $state= WinGetState("Wurm Online 3.3", "")
-Global $state2= "Wurm Online 3.3"
+Global $state= WinGetState("Wurm Online 3.54", "")
+Global $state2= "Wurm Online 3.54"
 ; 1.2 Short Functions
 Func setCycle($a)
    $Cycle_time=($a*1000)
