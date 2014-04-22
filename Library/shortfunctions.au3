@@ -24,6 +24,13 @@ Func ena()
    	  GUICtrlSetState($RadioAutoWalkOnPointclick,$GUI_Enable)
 	  GUICtrlSetState($Radioauto_walkoffpointclick,$GUI_Enable)
 EndFunc
+Func mouseinitpos ()
+   $initposx = MouseGetPos(0)
+   $initposy = MouseGetPos(1)
+EndFunc
+Func mousereturn ()
+   MouseMove($initposx,$initposy)
+EndFunc
 Func setOption($a)
    $Option=$a
    $binded=false
