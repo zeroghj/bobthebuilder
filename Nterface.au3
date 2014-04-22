@@ -18,7 +18,7 @@
 ;Option Functions
 #include "Library\Options\Beeping.au3"
 #include "Library\Options\Counting.au3"
-#include "Library\Options\Minize.au3"
+#include "Library\Options\Minimize.au3"
 ;GUI part of code
 #include <ButtonConstants.au3>
 #include <EditConstants.au3>
