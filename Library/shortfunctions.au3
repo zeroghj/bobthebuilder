@@ -29,7 +29,7 @@ Func mouseinitpos ()
    $initposy = MouseGetPos(1)
 EndFunc
 Func mousereturn ()
-   MouseMove($initposx,$initposy)
+   MouseMove($initposx,$initposy,0)
 EndFunc
 Func setOption($a)
    $Option=$a

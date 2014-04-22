@@ -1,5 +1,5 @@
 #Region ### START Koda GUI section ###
-$Form1_1 = GUICreate("Bob The Builder v1.07d", 450, 371, 259, 142)
+$Form1_1 = GUICreate("Bob The Builder v1.08c", 450, 371, 259, 142)
 $TabMainMen = GUICtrlCreateTab(0, 0, 433, 217)
 $Main = GUICtrlCreateTabItem("Main Menu")
 $GroupRadioPointClick = GUICtrlCreateGroup("", 4, 33, 105, 161)
