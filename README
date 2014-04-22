@@ -1,7 +1,12 @@
-Version 1.08a of Bob the Builder
+Version 1.08c of Bob the Builder
 
 CHANGELOG
 
+1.08c
+------------------------------
+#Mouse will move back to initial location
+
+------------------------------
 1.08a
 ------------------------------
 #Run as Admin reimplemented
