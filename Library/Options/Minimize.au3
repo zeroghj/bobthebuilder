@@ -11,6 +11,8 @@ Endif
 		If (($Minimize)AND(NOT($a))AND(NOT($state = 8))) Then
 		WinSetState($state2, "", @SW_MINIMIZE)
 		EndIf
+		If(NOT($a)) Then
 		BlockInput(0)
+		EndIf
 EndFunc
 
