@@ -50,9 +50,9 @@ For $i =0 to 5
 			   sleep(1000 + Random(0,1000))
 			   call("Minimize", true)
 			   If ($lumptimer > 40) Then
-				  MouseClickDrag("left",$lposx1,$lposy1,$lposx2,$lposy2)
+				  MouseClickDrag("left",$lpos1[0],$lpos1[1],$lpos2[0],$lpos2[1])
 				  Sleep(1000 + Random(0,1000))
-				  MouseClickDrag("left",$lposx2,($lposy2+8),$lposx1,$lposy1)
+				  MouseClickDrag("left",$lpos2[0],($lpos2[1]+8),$lpos1[0],$lpos1[1])
 				  $lumptimer = 0
 				  sleep(1000 + Random(0,1000))
 			   EndIf 
@@ -76,23 +76,23 @@ Func Improveitem ($a)
 
 	Switch $a
 		Case 1
-				$ps1 = $itemposx1
-				$ps2 = $itemposy1
+				$ps1 = $ipos1[0]
+				$ps2 = $ipos1[1]
 		Case 2
-				$ps1 = $itemposx2
-				$ps2 = $itemposy2
+				$ps1 = $ipos2[0]
+				$ps2 = $ipos2[1]
 		Case 3
-				$ps1 = $itemposx3
-				$ps2 = $itemposy3
+				$ps1 = $ipos3[0]
+				$ps2 = $ipos3[1]
 		Case 4
-				$ps1 = $itemposx4
-				$ps2 = $itemposy4
+				$ps1 = $ipos4[0]
+				$ps2 = $ipos4[1]
 		Case 5
-				$ps1 = $itemposx5
-				$ps2 = $itemposy5
+				$ps1 = $ipos5[0]
+				$ps2 = $ipos5[1]
 		Case 6
-				$ps1 = $itemposx6
-				$ps2 = $itemposy6
+				$ps1 = $ipos6[0]
+				$ps2 = $ipos6[1]
 	Endswitch
 	MouseMove($ps1,$ps2)
 			   ControlSend($state2, "", "", "2")
@@ -121,4 +121,66 @@ Func Improveitem ($a)
 			   sleep(100)
 			   ControlSend($state2, "", "", "1")
 			   sleep(100)
+EndFunc
+
+Func ImproveSetLump()
+	  if $lump then
+	  $lump=false
+	  else
+	  $lump=true
+	  endif
+EndFunc
+
+Func ImproveSetItems()
+	MsgBox(0, "", "Click on your six items to improve")
+	Local $trying=1
+	While(Not($trying==10))
+	if _IsPressed("01") And $trying==1 Then
+              $ipos1 = MouseGetPos()
+              $trying=2
+              call("SelectedBeep")
+       EndIf
+	  	if _IsPressed("01") And $trying==2 Then
+              $ipos2 = MouseGetPos()
+              $trying=3
+              call("SelectedBeep")
+       EndIf
+	   	if _IsPressed("01") And $trying==3 Then
+              $ipos3 = MouseGetPos()
+              $trying=4
+              call("SelectedBeep")
+       EndIf
+	   	if _IsPressed("01") And $trying==4 Then
+              $ipos4 = MouseGetPos()
+              $trying=5
+              call("SelectedBeep")
+       EndIf
+	   	if _IsPressed("01") And $trying==5 Then
+              $ipos5 = MouseGetPos()
+              $trying=6
+              call("SelectedBeep")
+       EndIf
+	   	if _IsPressed("01") And $trying==6 Then
+              $ipos6 = MouseGetPos()
+              $trying=7
+              call("SelectedBeep")
+       EndIf
+	   if $trying==7 And $lump Then
+	   $trying=8
+	   MsgBox(0, "", "Click on the lump in the forge and then the lump in your inventory")
+	   Endif
+	   if $trying==7 And Not($lump) Then
+	   $trying=10
+	   Endif
+	   	if _IsPressed("01") And $trying==8 Then
+              $lpos1 = MouseGetPos()
+              $trying=9
+              call("SelectedBeep")
+       EndIf
+	   	   	if _IsPressed("01") And $trying==9 Then
+              $lpos2 = MouseGetPos()
+              $trying=10
+              call("SelectedBeep")
+       EndIf
+	WEnd
 EndFunc

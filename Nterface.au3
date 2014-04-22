@@ -1,5 +1,5 @@
-;Version 1.08b
-
+;Version 2.0
+#include <Misc.au3>
 ;MainLoop and Subfunctions
 #include "Library\Main\MainLoop.au3"
 	#include "Library\Main\water.au3"
@@ -12,6 +12,9 @@
 	#include "Library\Main\Creation.au3"
 ;Global Variables
 #include "Library\Globals.au3"
+;Bin
+#include "Library\Bin\MenuHandle.au3"
+
 ;Short Functions
 #include "Library\shortfunctions.au3"
 	
@@ -21,6 +24,7 @@
 #include "Library\Options\Minimize.au3"
 ;GUI part of code
 #include <ButtonConstants.au3>
+#include <ComboConstants.au3>
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
