@@ -3,12 +3,10 @@ If ($looping) Then
    sleep(100  + Random(0,1000))
    $iterate=0
    call("Minimize, true")
-BlockInput(1)
 MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    sleep(1000  + Random(0,1000))
    Send($CreationCount)
    Send("{Enter}")
-   BlockInput(0)
    Endif
    call("Minimize, false")
    sleep(1000  + Random(0,1000))
@@ -41,7 +39,6 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    if ($looping) then
 	  sleep(100  + Random(0,1000))
 	  call("Minimize, true")
-   BlockInput(1)
    MouseMove($posx6,$posy6)
    MouseClick("left")
    Sleep(500 + Random(0,250))
@@ -56,7 +53,6 @@ MouseClickDrag("left",$posx1,$posy1,$posx6,$posy6)
    MouseClickDrag("left",$posx6,($posy6),$posx2,$posy2)
    Sleep(500 + Random(0,250))
    Next
-   BlockInput(0)
    call("Minimize, false")
    endif
 EndFunc

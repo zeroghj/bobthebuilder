@@ -128,35 +128,3 @@ Func positionsetitem6 ()
    $itemposx6 = $posx
    $itemposy6 = $posy
 EndFunc
-Func Beeping()
-if ($Beep) then
-Beep(500,500)
-Endif
-EndFunc
-Func Minimize($a)
-if ($a) then
-	call("Beeping")
-	if ($Minimize) then
-		$state = WinGetState($state2, "")
-		WinActivate($state2, "")
-		WinWaitActive($state2)
-	EndIf
-Endif
-		If (($Minimize)AND(NOT($a))AND(NOT($state = 8))) Then
-		WinSetState($state2, "", @SW_MINIMIZE)
-		EndIf
-EndFunc
-Func BossCount()
-   if ($limit) Then
-   	  if ($time_count>0)AND($Counting) Then
-		 $time_count = $time_count - 1
-	  ENDif
-	  if($time_count<1) Then
-		 $looping=False
-	  EndIf
-	  if ($time_count>0)AND NOT($Counting) Then
-		 $tt2 = TimerDiff($time)
-		 $time_count = (($tt2 - $tt1)/1000)
-	  ENDif
-   EndIf
-EndFunc
