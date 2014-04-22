@@ -2,6 +2,7 @@ Func Minimize($a)
 if ($a) then
 	call("Beeping")
 	BlockInput(1)
+	call("mouseinitpos")
 	if ($Minimize) then
 		$state = WinGetState($state2, "")
 		WinActivate($state2, "")
@@ -13,6 +14,7 @@ Endif
 		EndIf
 		If(NOT($a)) Then
 		BlockInput(0)
+		Call("mousereturn")
 		EndIf
 EndFunc
 
