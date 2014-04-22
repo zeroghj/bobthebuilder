@@ -95,6 +95,8 @@ Func Improveitem ($a)
 				$ps2 = $itemposy6
 	Endswitch
 	MouseMove($ps1,$ps2)
+			   ControlSend($state2, "", "", "2")
+			   sleep(100)
 			   ControlSend($state2, "", "", "o")
 			   sleep(100)
 			   ControlSend($state2, "", "", "1")
@@ -118,7 +120,5 @@ Func Improveitem ($a)
 			   ControlSend($state2, "", "", "j")
 			   sleep(100)
 			   ControlSend($state2, "", "", "1")
-			   sleep(100)
-			   ControlSend($state2, "", "", "2")
 			   sleep(100)
 EndFunc
