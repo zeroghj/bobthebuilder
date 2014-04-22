@@ -63,10 +63,7 @@ Func takeposition ()
    $posx = MouseGetPos(0)
    $posy = MouseGetPos(1)
 EndFunc
-Func mouseinitpos ()
-   $initposx = MouseGetPos(0)
-   $initposy = MouseGetPos(1)
-EndFunc
+
 Func positionset1 ()
    $posx1 = $posx
    $posy1 = $posy
@@ -130,7 +127,4 @@ EndFunc
 Func positionsetitem6 ()
    $itemposx6 = $posx
    $itemposy6 = $posy
-EndFunc
-Func mousereturn ()
-   MouseMove($initposx,$initposy)
 EndFunc
