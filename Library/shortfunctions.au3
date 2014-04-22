@@ -95,14 +95,6 @@ Func positionset6 ()
    $posx6 = $posx
    $posy6 = $posy
 EndFunc
-Func positionsetwater1 ()
-   $wposx1 = $posx
-   $wposy1 = $posy
-EndFunc
-Func positionsetwater2 ()
-   $wposx2 = $posx
-   $wposy2 = $posy
-EndFunc
 Func positionsetlump1 ()
    $lposx1 = $posx
    $lposy1 = $posy

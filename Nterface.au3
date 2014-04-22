@@ -1,5 +1,5 @@
-;Version 1.08b
-
+;Version 1.09a
+#include <Misc.au3>
 ;MainLoop and Subfunctions
 #include "Library\Main\MainLoop.au3"
 	#include "Library\Main\water.au3"
@@ -12,6 +12,9 @@
 	#include "Library\Main\Creation.au3"
 ;Global Variables
 #include "Library\Globals.au3"
+;Bin
+#include "Library\Bin\MenuHandle.au3"
+
 ;Short Functions
 #include "Library\shortfunctions.au3"
 	

@@ -27,10 +27,7 @@ Global $posx5=0
 Global $posy5=0
 Global $posx6=0
 Global $posy6=0
-Global $wposx1=0
-Global $wposy1=0
-Global $wposx2=0
-Global $wposy2=0
+Global $wpos
 Global $lposx1=0
 Global $lposy1=0
 Global $lposx2=0
@@ -60,4 +57,5 @@ Global $ps2=0
 Global $citem=0
 Global $state= WinGetState("Wurm Online 3.54", "")
 Global $state2= "Wurm Online 3.54"
+Global $line
 #RequireAdmin
