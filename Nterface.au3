@@ -1,4 +1,4 @@
-;Version 1.08c
+;Version 1.08b
 
 ;MainLoop and Subfunctions
 #include "Library\Main\MainLoop.au3"
