@@ -58,3 +58,4 @@ Global $ps2=0
 Global $citem=0
 Global $state= WinGetState("Wurm Online 3.54", "")
 Global $state2= "Wurm Online 3.54"
+#RequireAdmin
