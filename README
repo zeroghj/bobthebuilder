@@ -1,7 +1,22 @@
-Version 1.08c of Bob the Builder
+Version 2.0 of Bob the Builder
 
 CHANGELOG
 
+
+UPDATE TO 2.0
+------------------------------
+#Complete GUI redesign
+#Lot of code clean up
+#Implemented MessageBox for Setting Up Water/Improvement/Creation
+#Initial Menu is now navigated by Lines instead of by position (Menus from menu still open the same way as before)
+
+Future Implementations
+- Image Recognition for improvement
+- Option to change wurm version
+- Image recognition for stamina / water
+- Image-to-text recognition for menu navigation
+
+------------------------------
 1.08c
 ------------------------------
 #Mouse will move back to initial location

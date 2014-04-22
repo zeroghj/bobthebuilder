@@ -15,14 +15,88 @@ Func setitemnumber($a)
 		$itemnumber = $a
 	Endif
 EndFunc
-Func dis()
+Func enac()
    $walk=false
-	  GUICtrlSetState($RadioAutoWalkOnPointclick,$GUI_Disable)
-	  GUICtrlSetState($Radioauto_walkoffpointclick,$GUI_Disable)
+   	  GUICtrlSetState($RadAutoWalkOn,$GUI_Disable)
+	  GUICtrlSetState($RadAutoWalkOff,$GUI_Disable)
+	  GUICtrlSetPos($GroupCreation,21, 85, 89, 65)
+	  GUICtrlSetPos($InpCreation1,8, 159, 121, 22)
+	  GUICtrlSetPos($InpCreation2,8, 184, 121, 22)
+		GUICtrlSetPos($BtnCreationSet,29, 109, 75, 25)
+	  GUICtrlSetPos($Groupeteration,229, 37, 193, 41)
+			GUICtrlSetPos($InputIteration,253, 53, 121, 21)
+	  GUICtrlSetPos($Groupchangetool,173, 77, 257, 73)
+			GUICtrlSetPos($Groupchangetool,173, 77, 257, 73)
+			GUICtrlSetPos($Lblchangetool,181, 93, 71, 17)
+			GUICtrlSetPos($RadChangeToolYes,301, 93, 49, 17)
+			GUICtrlSetPos($RadChangeToolNo,261, 93, 41, 17)
+			GUICtrlSetPos($Lblchangetooleach,197, 117, 29, 17)
+			GUICtrlSetPos($Inptooleach,245, 117, 25, 21)
+			GUICtrlSetPos($LblCycles,285, 117, 35, 17)
+			GUICtrlSetPos($BtnSetTools,349, 109, 75, 25)
+	  GUICtrlSetPos($GroupBulkBin,197, 149, 233, 57)
+		GUICtrlSetPos($RadBBNo,213, 165, 49, 17)
+		GUICtrlSetPos($RadBBYes,261, 165, 49, 17)
+		GUICtrlSetPos($InpBBPick,205, 181, 105, 21)
+		GUICtrlSetPos($InpBBDrop,325, 181, 73, 21)
+	  GUICtrlSetPos($GroupImprove,-10,-10,0,0)
+		GUICtrlSetPos($BtnImproveSetLump, -10,-10,0,0)
+		GUICtrlSetPos($BtnImproveSetItems, -10,-10,0,0)
+EndFunc
+Func eni()
+   $walk=false
+   	  GUICtrlSetState($RadAutoWalkOn,$GUI_Disable)
+	  GUICtrlSetState($RadAutoWalkOff,$GUI_Disable)
+	  	  GUICtrlSetPos($InpCreation1,-10,-10,0,0)
+	  GUICtrlSetPos($InpCreation2,-10,-10,0,0)
+	  GUICtrlSetPos($GroupCreation,-10,-10,0,0)
+		GUICtrlSetPos($BtnCreationSet,-10,-10,0,0)
+	  GUICtrlSetPos($Groupeteration,-10,-10,0,0)
+			GUICtrlSetPos($InputIteration,-10,-10,0,0)
+	  GUICtrlSetPos($Groupchangetool,-10,-10,0,0)
+			GUICtrlSetPos($Groupchangetool,-10,-10,0,0)
+			GUICtrlSetPos($Lblchangetool,-10,-10,0,0)
+			GUICtrlSetPos($RadChangeToolYes,-10,-10,0,0)
+			GUICtrlSetPos($RadChangeToolNo,-10,-10,0,0)
+			GUICtrlSetPos($Lblchangetooleach,-10,-10,0,0)
+			GUICtrlSetPos($Inptooleach,-10,-10,0,0)
+			GUICtrlSetPos($LblCycles,-10,-10,0,0)
+			GUICtrlSetPos($BtnSetTools,-10,-10,0,0)
+	  GUICtrlSetPos($GroupBulkBin,-10,-10,0,0)
+		GUICtrlSetPos($RadBBNo,-10,-10,0,0)
+		GUICtrlSetPos($RadBBYes,-10,-10,0,0)
+		GUICtrlSetPos($InpBBPick,-10,-10,0,0)
+		GUICtrlSetPos($InpBBDrop,-10,-10,0,0)
+	  GUICtrlSetPos($GroupImprove, 13, 85, 89, 97)
+		GUICtrlSetPos($BtnImproveSetLump, 21, 109, 75, 25)
+		GUICtrlSetPos($BtnImproveSetItems, 21, 149, 75, 25)
 EndFunc
 Func ena()
-   	  GUICtrlSetState($RadioAutoWalkOnPointclick,$GUI_Enable)
-	  GUICtrlSetState($Radioauto_walkoffpointclick,$GUI_Enable)
+   	  GUICtrlSetState($RadAutoWalkOn,$GUI_Enable)
+	  GUICtrlSetState($RadAutoWalkOff,$GUI_Enable)
+	  	  GUICtrlSetPos($InpCreation1,-10,-10,0,0)
+	  GUICtrlSetPos($InpCreation2,-10,-10,0,0)
+	  GUICtrlSetPos($GroupCreation,-10,-10,0,0)
+		GUICtrlSetPos($BtnCreationSet,-10,-10,0,0)
+	  GUICtrlSetPos($Groupeteration,-10,-10,0,0)
+			GUICtrlSetPos($InputIteration,-10,-10,0,0)
+	  GUICtrlSetPos($Groupchangetool,-10,-10,0,0)
+			GUICtrlSetPos($Groupchangetool,-10,-10,0,0)
+			GUICtrlSetPos($Lblchangetool,-10,-10,0,0)
+			GUICtrlSetPos($RadChangeToolYes,-10,-10,0,0)
+			GUICtrlSetPos($RadChangeToolNo,-10,-10,0,0)
+			GUICtrlSetPos($Lblchangetooleach,-10,-10,0,0)
+			GUICtrlSetPos($Inptooleach,-10,-10,0,0)
+			GUICtrlSetPos($LblCycles,-10,-10,0,0)
+			GUICtrlSetPos($BtnSetTools,-10,-10,0,0)
+	  GUICtrlSetPos($GroupBulkBin,-10,-10,0,0)
+		GUICtrlSetPos($RadBBNo,-10,-10,0,0)
+		GUICtrlSetPos($RadBBYes,-10,-10,0,0)
+		GUICtrlSetPos($InpBBPick,-10,-10,0,0)
+		GUICtrlSetPos($InpBBDrop,-10,-10,0,0)
+	  GUICtrlSetPos($GroupImprove, -10,-10,0,0)
+		GUICtrlSetPos($BtnImproveSetLump, -10,-10,0,0)
+		GUICtrlSetPos($BtnImproveSetItems, -10,-10,0,0)
 EndFunc
 Func mouseinitpos ()
    $initposx = MouseGetPos(0)
@@ -71,59 +145,109 @@ Func takeposition ()
    $posy = MouseGetPos(1)
 EndFunc
 
-Func positionset1 ()
-   $posx1 = $posx
-   $posy1 = $posy
+Func SetMenu1()
+   $Menu1=GUICTrlRead($InpCreation1)
 EndFunc
-Func positionset2 ()
-   $posx2 = $posx
-   $posy2 = $posy
+Func SetMenu2()
+   $Menu2=GUICTrlRead($InpCreation2)
 EndFunc
-Func positionset3 ()
-   $posx3 = $posx
-   $posy3 = $posy
+;GUi function
+
+
+Func CLOSEClicked()
+   Exit
 EndFunc
-Func positionset4 ()
-   $posx4 = $posx
-   $posy4 = $posy
+   ;(kinda) Tab1
+Func ListofActivityChange()
+	Local $switcheroo = GUICtrlRead($ListofActivity)
+	Switch $switcheroo
+	Case "Mining"
+		call("Mine1")
+	Case "Fishing"
+		call("Fish2")
+	Case "Tracking"
+		call("Track3")
+	Case "Creation"
+		call("Creation4")
+	Case "Digging"
+		call("Digging5")
+	Case "Improve"
+		call("Improvement6")
+	Endswitch
 EndFunc
-Func positionset5 ()
-   $posx5 = $posx
-   $posy5 = $posy
+Func Mine1()
+	  Call("setOption", 1)
+	  Call("ena")
 EndFunc
-Func positionset6 ()
-   $posx6 = $posx
-   $posy6 = $posy
+Func Fish2()
+	  Call("setOption", 2)
+	  Call("ena")
 EndFunc
-Func positionsetlump1 ()
-   $lposx1 = $posx
-   $lposy1 = $posy
+Func Track3()
+	  Call("setOption", 3)
+	  Call("ena")
+   EndFunc
+      Func Creation4()
+	  Call("setOption", 4)
+	  Call("enac")
+   EndFunc
+   Func Digging5()
+	  Call("setOption", 5)
+	  Call("ena")
+   EndFunc
+      Func Improvement6()
+	  Call("setOption", 6)
+	  Call("eni")
+   EndFunc
+Func Walkon()
+	  Call("WalkSet", true)
 EndFunc
-Func positionsetlump2 ()
-   $lposx2 = $posx
-   $lposy2 = $posy
+Func Walkoff()
+	  Call("WalkSet", false)
 EndFunc
-Func positionsetitem1 ()
-   $itemposx1 = $posx
-   $itemposy1 = $posy
+Func cyclez()
+	  call("setCycle",GUICTrlRead($InpCycletime))
 EndFunc
-Func positionsetitem2 ()
-   $itemposx2 = $posx
-   $itemposy2 = $posy
+Func son()
+	  call("lset")
+	  call("setOn")
 EndFunc
-Func positionsetitem3 ()
-   $itemposx3 = $posx
-   $itemposy3 = $posy
+Func soff()
+	  call("setOff")
 EndFunc
-Func positionsetitem4 ()
-   $itemposx4 = $posx
-   $itemposy4 = $posy
+Func ltime()
+	  $Counting=false
 EndFunc
-Func positionsetitem5 ()
-   $itemposx5 = $posx
-   $itemposy5 = $posy
+Func lcount()
+	  $Counting=true
+   EndFunc
+Func lset()
+	  Call("setLimit",GUICTrlRead($Cycleinput))
+   EndFunc
+Func BBNO()
+	  Call("setBB", false);
 EndFunc
-Func positionsetitem6 ()
-   $itemposx6 = $posx
-   $itemposy6 = $posy
+Func BBYES()
+	  Call("setBB", true);
+EndFunc
+Func minoff()
+	  Call("setminimize", false);
+EndFunc
+Func minon()
+	  Call("setminimize", true);
+EndFunc
+Func beepoff()
+	  Call("setbeep", false);
+EndFunc
+Func beepon()
+	  Call("setbeep", true);
+EndFunc
+Func Action()
+	  Call("setcreationcount",GUICTrlRead($InpBBPick))
+   EndFunc
+   Func setiteration()
+	  Call("SetIterationcount",GUICTrlRead($InputIteration))
+   EndFunc
+      Func setfinalitembulk()
+	  Call("Finalitembulk",GUICTrlRead($InpBBDrop))
 EndFunc

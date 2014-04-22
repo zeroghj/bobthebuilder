@@ -1,7 +1,8 @@
 ;function that will have the character drink water
 Func getwater ()
+if $wateris then
  $loopcounter = $loopcounter + 1
- if ($loopcounter>2) then
+ if ($loopcounter>20) then
  $loopcounter=0
  call("Minimize", true)
  MouseMove($wpos[0],$wpos[1])
@@ -19,10 +20,12 @@ Func getwater ()
        EndIf
  call("Minimize", false)
  sleep(2000 + Random(0,1000))
- endif
+ Endif
+ Endif
 EndFunc
 ;activate when water button is pressed
-Func positionsetwater1 ()
+Func waterOn ()
+	$wateris=true
 	MsgBox(0, "", "Click on your water source")
 	Local $trying=1
 	While($trying==1)
@@ -32,5 +35,9 @@ Func positionsetwater1 ()
               call("SelectedBeep")
        EndIf
 	WEnd
+EndFunc
+
+Func waterOff ()
+	$wateris=false
 EndFunc
 
