@@ -49,7 +49,7 @@ For $i =0 to 5
 			   If ($looping) Then
 			   sleep(1000 + Random(0,1000))
 			   call("Minimize", true)
-			   If ($lumptimer > 40) Then
+			   If ($lumptimer > 40 And $lump) Then
 				  MouseClickDrag("left",$lpos1[0],$lpos1[1],$lpos2[0],$lpos2[1])
 				  Sleep(1000 + Random(0,1000))
 				  MouseClickDrag("left",$lpos2[0],($lpos2[1]+8),$lpos1[0],$lpos1[1])
@@ -126,8 +126,10 @@ EndFunc
 Func ImproveSetLump()
 	  if $lump then
 	  $lump=false
+	  	  MsgBox(0, "", "Lump Deactivated")
 	  else
 	  $lump=true
+	  MsgBox(0, "", "Lump Activated, Make sure to set them by reclicking Set Items")
 	  endif
 EndFunc
 
