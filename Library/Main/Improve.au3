@@ -173,6 +173,7 @@ Func ImproveSetItems()
 	   Endif
 	   if $trying==7 And Not($lump) Then
 	   $trying=10
+	   	   MsgBox(0, "", "All Set, You are ready to go")
 	   Endif
 	   	if _IsPressed("01") And $trying==8 Then
               $lpos1 = MouseGetPos()
@@ -182,7 +183,7 @@ Func ImproveSetItems()
 	   	   	if _IsPressed("01") And $trying==9 Then
               $lpos2 = MouseGetPos()
               $trying=10
-              call("SelectedBeep")
+              MsgBox(0, "", "All Set, You are ready to go")
        EndIf
 	WEnd
 EndFunc
