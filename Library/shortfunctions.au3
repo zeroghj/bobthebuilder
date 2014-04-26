@@ -251,3 +251,57 @@ Func Action()
       Func setfinalitembulk()
 	  Call("Finalitembulk",GUICTrlRead($InpBBDrop))
 EndFunc
+	  Func hotkeypathsel()
+    Local Const $sMessage = "Please select hotkey path"
+
+    ; selection du path pour le fichier de hotkey
+    $hotkeypath = FileOpenDialog($sMessage, @WindowsDir & "\", "Images (*.txt)")
+	pathsave()
+ EndFunc
+ 
+   Func Comparefiles()
+    ; Ouverture du fichier et lecture du path
+	Local $openhotckey = FileOpen(@ScriptDir & "\save\hotkeypath.txt")
+	If $openhotckey = -1 Then
+        MsgBox(1,"", "An error occurred when reading the file.")
+        Return False
+    EndIf
+	Local $hotkeypath = FileReadLine($openhotckey, 1)
+	
+	; Ouverture du fichier et creation du handle pour le lire
+    Local $hFileOpen = FileOpen($hotkeypath)
+    If $hFileOpen = -1 Then
+        MsgBox(1,"", "An error occurred when reading the file.")
+        Return False
+    EndIf
+
+    ; Lecture du fichier, on peut mettre n'importe quelle ligne ou plusieurs lignes
+    Local $sFileRead = FileReadLine($hFileOpen, 9)
+	
+	; On compare les lignes apres la lecture avec le texte qui devrait être là
+	If $sFileRead = "bind 1 IMPROVE" Then
+	   
+		 $binded=True
+		 
+    EndIf
+
+    ; On ferme le fichier
+    FileClose($hFileOpen)
+ EndFunc
+ 
+ Func pathsave()
+    Local Const $sFilePath = @ScriptDir & "\save\hotkeypath.txt"
+    
+	  ; creation du fichier save
+	  _FileCreate($sFilePath)
+   
+	  ; ouverture du fichier pour l'écriture
+	  Local $hFileOpen = FileOpen($sFilePath,1)
+	 
+    ; Ecriture du path dans le fichier
+    FileWrite($hFileOpen,$hotkeypath)
+
+    ; fermeture du fichier
+    FileClose($hFileOpen)
+   
+EndFunc  

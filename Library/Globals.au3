@@ -47,4 +47,7 @@ Global $state= WinGetState("Wurm Online 3.4-6100", "")
 Global $state2= "Wurm Online 3.4-6100"
 Global $line
 Global $lump=false
+Global $hotkeypath=0
+Global $sFileRead=0
+Global $SaveExists=0
 #RequireAdmin

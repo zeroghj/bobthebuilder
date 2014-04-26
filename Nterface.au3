@@ -1,4 +1,4 @@
-;Version 2.0
+;Version 2.0.1
 #include <Misc.au3>
 ;MainLoop and Subfunctions
 #include "Library\Main\MainLoop.au3"
@@ -30,6 +30,7 @@
 #include <StaticConstants.au3>
 #include <TabConstants.au3>
 #include <WindowsConstants.au3>
+#include <File.au3>
 ;GUI form
 #include "Library\GUI\form.au3"
 ;OnEvent Programing

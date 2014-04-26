@@ -1,7 +1,14 @@
 Func Improve()
 For $i =0 to 5
 			if($looping) Then
-			   if (NOT($binded)) Then
+			   $SaveExists = FileExists (@ScriptDir & "\save\hotkeypath.txt")
+			   if $SaveExists = 0 Then
+				  hotkeypathsel()
+				  Comparefiles()
+			   Else 
+				  Comparefiles()
+			   EndIf
+			   if (NOT($binded)) Then 
 				  call("Minimize", true)
 				  send("{F1}")
 				  send("bind 1 IMPROVE")
@@ -43,7 +50,6 @@ For $i =0 to 5
 				  sleep(1000 + Random(0,1000))
 				  send("{Enter}")
 				  send("{F1}")
-				  $binded=True
 			   EndIf
 			   Endif
 			   If ($looping) Then
