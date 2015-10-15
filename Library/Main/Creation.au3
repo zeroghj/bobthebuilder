@@ -2,44 +2,44 @@ Func Creation()
 If ($looping) Then
    sleep(100  + Random(0,1000))
    $iterate=0
-   call("Minimize, true")
+   call("Minimize", true)
 	MouseClickDrag("left",$cpos1[0],$cpos1[1],$cpos2[0],$cpos2[1])
    sleep(1000  + Random(0,1000))
    Send($CreationCount)
    Send("{Enter}")
    Endif
-   call("Minimize, false")
+   call("Minimize", false)
    sleep(1000  + Random(0,1000))
    While ($iterate <$iteration)
    If ($looping) Then
-		call("Minimize, true")
-	  sleep(100  + Random(0,1000))
+		call("Minimize",true)
+	  sleep(100 + Random(0,1000))
 	  MouseMove($cpos2[0],$cpos2[1])
-	  sleep(1000  + Random(0,1000))
+	  sleep(1000 + Random(0,1000))
 	  MouseClick("right")
-	  sleep(1000  + Random(0,1000))
+	  sleep(1000 + Random(0,1000))
 	  $line = GetLine()
         If IsArray($line) Then
 	  MouseMove($line[0]+52,$line[1])
-	  Sleep(1000  + Random(0,1000))
+	  Sleep(1000 + Random(0,1000))
 	  MouseMove($Line[0]+52,$cpos3[1])
-	  Sleep(1000  + Random(0,1000))
+	  Sleep(1000 + Random(0,1000))
 	  MouseMove($cpos3[0],$cpos3[1])
-	  Sleep(500  + Random(0,250))
+	  Sleep(500 + Random(0,250))
 	  MouseMove($cpos3[0],$cpos4[1])
-	  Sleep(500  + Random(0,250))
+	  Sleep(500 + Random(0,250))
 	  MouseMove($cpos4[0],$cpos4[1])
-	  Sleep(500  + Random(0,250))
+	  Sleep(500 + Random(0,250))
 	  MouseClick("left")
        EndIf
-	  call("Minimize, false")
+	  call("Minimize",false)
 	  Sleep($Cycle_Time  + Random(0,3000))
 	  $iterate= $iterate+1
 	  Endif
    Wend
    if ($looping) then
 	  sleep(100  + Random(0,1000))
-	  call("Minimize, true")
+	  call("Minimize", true)
    MouseMove($cpos2[0],$cpos2[1])
    MouseClick("left")
    Sleep(500 + Random(0,250))
@@ -54,7 +54,7 @@ If ($looping) Then
    Next
    MouseClickDrag("left",$cpos5[0],($cpos5[1]),$cpos2[0],$cpos2[1])
    Sleep(500 + Random(0,250))
-   call("Minimize, false")
+   call("Minimize", false)
    endif
 EndFunc
 

@@ -1,17 +1,33 @@
-Version 2.0.1 of Bob the Builder
+Version 2.1.0 of Bob the Builder
 
 CHANGELOG
 
+UPDATE TO 2.1.0
+------------------------------
+#Now bind and verify hotkeys in external
+#File comparison new version
+#Full refactoring to AutoIt 3.3.14.2 (from 3.3.10)
+#The save is way better now, it's not cheating the loop anymore
+#Major performance improvement
+#Fixed a few bugs and a possible ram leak
+
+To Do (Jay)
+-Clean the code a bit
+-Verify everything on the new steam version of the game
+-Someday I will fix the warnings in the compiler
+-Still need to verify a few things about the bot security
+------------------------------
 
 UPDATE TO 2.0.1
 ------------------------------
 #Now recognize if the hotkeys are set
 #Attempt to save file
 
-To do
+To do (Jay)
 - Better file reading/comparison (first version is pretty stupid, only compare first hotkey line)
 - Push save file a lot further
 ------------------------------
+
  2.0
 ------------------------------
 #Complete GUI redesign
@@ -33,13 +49,13 @@ Future Implementations
 ------------------------------
 1.08a
 ------------------------------
-#Run as Admin reimplemented
+#Run as Admin implemented
 #The mouse now freeze properly
 #420blazeit
 ------------------------------
 1.08
 ------------------------------
-#Recreation of program to include librairies
+#Recreation of program to include libraries
 
 #Multiple update for multiple patches
 #Improvement for water function
@@ -116,9 +132,9 @@ TODO
 ---------------------------
 
 	Point and Click
-	
+
 #Added the "Digging" option
-	
+
 	Creation
 
 #The cycle time option for the creation menu now actually works
@@ -187,5 +203,3 @@ to be put into a bulk bin once the work is done
 
 #Program rewriten to Autoit from Java
 -------------------------
-
-

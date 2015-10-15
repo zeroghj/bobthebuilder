@@ -1,23 +1,23 @@
-;Version 2.0.1
+;Version 2.1.0
 #include <Misc.au3>
-;MainLoop and Subfunctions
-#include "Library\Main\MainLoop.au3"
-	#include "Library\Main\water.au3"
-	#include "Library\Main\Walking.au3"
-	#include "Library\Main\Mining.au3"
-	#include "Library\Main\Fishing.au3"
-	#include "Library\Main\Tracking.au3"
-	#include "Library\Main\Digging.au3"
-	#include "Library\Main\Improve.au3"
-	#include "Library\Main\Creation.au3"
 ;Global Variables
 #include "Library\Globals.au3"
+;MainLoop and Subfunctions
+#include "Library\Main\MainLoop.au3"
+#include "Library\Main\water.au3"
+#include "Library\Main\Walking.au3"
+#include "Library\Main\Mining.au3"
+#include "Library\Main\Fishing.au3"
+#include "Library\Main\Tracking.au3"
+#include "Library\Main\Digging.au3"
+#include "Library\Main\Improve.au3"
+#include "Library\Main\Creation.au3"
+#include "Library\Main\Save.au3"
+#include "Library\Main\Keybinding.au3"
 ;Bin
 #include "Library\Bin\MenuHandle.au3"
-
 ;Short Functions
 #include "Library\shortfunctions.au3"
-	
 ;Option Functions
 #include "Library\Options\Beeping.au3"
 #include "Library\Options\Counting.au3"
@@ -35,9 +35,9 @@
 #include "Library\GUI\form.au3"
 ;OnEvent Programing
 #include "Library\GUI\onEvent.au3"
+
+Call("VerifySaveFiles")
+
 While 1
-	  Call("Looptime")
-
+Call("Looptime")
 WEnd
-
-

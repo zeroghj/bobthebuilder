@@ -1,5 +1,5 @@
 ;function that will have the character drink water
-Func getwater ()
+Func getwater()
 if $wateris then
  $loopcounter = $loopcounter + 1
  if ($loopcounter>20) then
@@ -24,7 +24,7 @@ if $wateris then
  Endif
 EndFunc
 ;activate when water button is pressed
-Func waterOn ()
+Func waterOn()
 	$wateris=true
 	MsgBox(0, "", "Click on your water source")
 	Local $trying=1
@@ -37,7 +37,6 @@ Func waterOn ()
 	WEnd
 EndFunc
 
-Func waterOff ()
+Func waterOff()
 	$wateris=false
 EndFunc
-
