@@ -1,5 +1,5 @@
 Func Looptime()
-   while ($looping)
+   while($looping)
 		sleep(5000+Random(0,1000))
 		call("Walking")
 		if ($looping) Then

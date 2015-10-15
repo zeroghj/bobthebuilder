@@ -1,57 +1,5 @@
 Func Improve()
 For $i =0 to 5
-			if($looping) Then
-			   $SaveExists = FileExists (@ScriptDir & "\save\hotkeypath.txt")
-			   if $SaveExists = 0 Then
-				  hotkeypathsel()
-				  Comparefiles()
-			   Else 
-				  Comparefiles()
-			   EndIf
-			   if (NOT($binded)) Then 
-				  call("Minimize", true)
-				  send("{F1}")
-				  send("bind 1 IMPROVE")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind 2 REPAIR")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind o ACTIVATE_TOOL1")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind p ACTIVATE_TOOL2")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind k ACTIVATE_TOOL3")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind l ACTIVATE_TOOL4")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind m ACTIVATE_TOOL5")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("bind j ACTIVATE_TOOL6")
-				  sleep(1000 + Random(0,1000))
-				  send("{Enter}")
-				  send("{F1}")
-			   EndIf
-			   Endif
 			   If ($looping) Then
 			   sleep(1000 + Random(0,1000))
 			   call("Minimize", true)
@@ -61,7 +9,7 @@ For $i =0 to 5
 				  MouseClickDrag("left",$lpos2[0],($lpos2[1]+8),$lpos1[0],$lpos1[1])
 				  $lumptimer = 0
 				  sleep(1000 + Random(0,1000))
-			   EndIf 
+			   EndIf
 			   if ( $citem < $itemnumber ) then
 				$citem = $citem +1
 				else
@@ -101,31 +49,31 @@ Func Improveitem ($a)
 				$ps2 = $ipos6[1]
 	Endswitch
 	MouseMove($ps1,$ps2)
-			   ControlSend($state2, "", "", "2")
+			   ControlSend($state2, "", "", "{NUMPAD2}")
 			   sleep(100)
 			   ControlSend($state2, "", "", "o")
 			   sleep(100)
-			   ControlSend($state2, "", "", "1")
+			   ControlSend($state2, "", "", "{NUMPAD1}")
 			   sleep(100)
 			   ControlSend($state2, "", "", "p")
 			   sleep(100)
-			   ControlSend($state2, "", "", "1")
+			   ControlSend($state2, "", "", "{NUMPAD1}")
 			   sleep(100)
 			   ControlSend($state2, "", "", "k")
 			   sleep(100)
-			   ControlSend($state2, "", "", "1")
+			   ControlSend($state2, "", "", "{NUMPAD1}")
 			   sleep(100)
 			   ControlSend($state2, "", "", "l")
 			   sleep(100)
-			   ControlSend($state2, "", "", "1")
+			   ControlSend($state2, "", "", "{NUMPAD1}")
 			   sleep(100)
 			   ControlSend($state2, "", "", "m")
 			   sleep(100)
-			   ControlSend($state2, "", "", "1")
+			   ControlSend($state2, "", "", "{NUMPAD1}")
 			   sleep(100)
 			   ControlSend($state2, "", "", "j")
 			   sleep(100)
-			   ControlSend($state2, "", "", "1")
+			   ControlSend($state2, "", "", "{NUMPAD1}")
 			   sleep(100)
 EndFunc
 

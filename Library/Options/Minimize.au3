@@ -9,7 +9,7 @@ if ($a) then
 		WinWaitActive($state2)
 	EndIf
 Endif
-		If (($Minimize)AND(NOT($a))AND(NOT($state = 8))) Then
+		If (($Minimize) AND ( NOT ($a)) AND ( NOT ($state = 8))) Then
 		WinSetState($state2, "", @SW_MINIMIZE)
 		EndIf
 		If(NOT($a)) Then
