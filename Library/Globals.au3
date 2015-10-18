@@ -51,4 +51,5 @@ Global $hotkeypath=0
 Global $sFileRead=0
 Global $SaveExists=0
 Global $keybindopen=0
+Global $hotkeypathset=0
 #RequireAdmin
