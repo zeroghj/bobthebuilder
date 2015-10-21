@@ -1,6 +1,24 @@
-Version 2.1.0 of Bob the Builder
+Version 2.1.1 of Bob the Builder
 
 CHANGELOG
+
+UPDATE TO 2.1.1
+------------------------------
+#+++PLEASE START BOB FIRST THEN THE GAME+++
+#Better file comparison
+#New code logic in the save system
+#The keybind system is at least 900% faster now compared to 2.1.0
+#Fixed a loophole in the save system
+#Fixed 2 major bugs preventing from using Bob
+#Cleaned the save code a bit
+#Verified the code against most recent game version (until Unlimited)
+#Fixed a bunch of optimization warnings
+
+To Do (Jay)
+-Clean more code
+-Still need to verify for Unlimited version (Wednesday)
+-I need a new approach and some R&D to fix the last bit of optimization warnings
+------------------------------
 
 UPDATE TO 2.1.0
 ------------------------------

@@ -1,5 +1,5 @@
 #Region ### START Koda GUI section ### Form=c:\users\zeroghj\desktop\vincent\workspace\autoit\koda\forms\form1.kxf
-$Bobthebuilder = GUICreate("Bob The Builder v2.1.0", 450, 371, 259, 142)
+$Bobthebuilder = GUICreate("Bob The Builder v2.1.1", 450, 371, 259, 142)
 $TabMainMen = GUICtrlCreateTab(0, 0, 433, 217)
 $Main = GUICtrlCreateTabItem("Main Menu")
 $ListofActivity = GUICtrlCreateCombo("ListofActivity", 16, 48, 145, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))

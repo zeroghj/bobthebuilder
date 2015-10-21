@@ -1,8 +1,10 @@
-;Version 2.1.0
+;Version 2.1.1
 #include <Misc.au3>
 ;Global Variables
 #include "Library\Globals.au3"
 ;MainLoop and Subfunctions
+#include "Library\Main\Save.au3"
+#include "Library\Main\Keybinding.au3"
 #include "Library\Main\MainLoop.au3"
 #include "Library\Main\water.au3"
 #include "Library\Main\Walking.au3"
@@ -12,8 +14,6 @@
 #include "Library\Main\Digging.au3"
 #include "Library\Main\Improve.au3"
 #include "Library\Main\Creation.au3"
-#include "Library\Main\Save.au3"
-#include "Library\Main\Keybinding.au3"
 ;Bin
 #include "Library\Bin\MenuHandle.au3"
 ;Short Functions
