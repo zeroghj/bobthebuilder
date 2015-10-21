@@ -1,11 +1,14 @@
 Func VerifySaveFiles()
-    $SaveExists = FileExists (@ScriptDir & "\save\hotkeypath.txt")
-      if $SaveExists = 0 Then
-        call("hotkeypathsel")
-      EndIf
-      if $binded = false Then
-        call("Comparefiles")
-      EndIf
+  If  ProcessExists($wurmprocessname) Then
+    $wurmisopen = true
+  EndIf
+  $SaveExists = FileExists (@ScriptDir & "\save\hotkeypath.txt")
+  if $SaveExists = 0 Then
+    call("hotkeypathsel")
+  EndIf
+  if $binded = false Then
+    call("Comparefiles")
+  EndIf
 EndFunc
 Func setCycle($a)
    $Cycle_time=($a*1000)

@@ -43,8 +43,9 @@ Global $loopcounter=0
 Global $ps1=0
 Global $ps2=0
 Global $citem=0
-Global $state= WinGetState("Wurm Online 3.4-6100", "")
-Global $state2= "Wurm Online 3.4-6100"
+Global $state= WinGetState("Wurm Unlimited", "")
+Global $state2= "Wurm Unlimited"
+Global $wurmprocessname="WurmLauncher.exe"
 Global $line
 Global $lump=false
 Global $hotkeypath=0
@@ -52,4 +53,6 @@ Global $sFileRead=0
 Global $SaveExists=0
 Global $keybindopen=0
 Global $hotkeypathset=0
+Global $wurmisopen=false
+Global $hadtorebind=false
 #RequireAdmin

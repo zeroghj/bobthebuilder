@@ -16,12 +16,14 @@ Func Comparefiles()
 
    FileSetPos($keybindopen,0,0)
    ; Lecture du fichier, on peut mettre n'importe quelle ligne ou plusieurs lignes
-   $sFileRead = FileReadLine($keybindopen, 1)
+   $sFileRead = FileReadLine($keybindopen, 2)
 
  ; On compare les lignes apres la lecture avec le texte qui devrait etre la
- If $sFileRead = "bind NUMPAD1 IMPROVE" Then
+ If $sFileRead == "bind NUMPAD1 IMPROVE" Then
 
     $binded=true
+    $hadtorebind=false
+    MsgBox(0,"","You can now open the game safely")
 
     else
 
@@ -38,18 +40,25 @@ Func Comparefiles()
     ;FileWriteLine($keybindopen,"bind m ACTIVATE_TOOL5" & @CRLF)
     ;FileWriteLine($keybindopen,"bind j ACTIVATE_TOOL6")
 
+    FileSetPos($keybindopen,0,0)
     FileWriteLine($keybindopen,"bind NUMPAD1 IMPROVE" & @CRLF & _
     "bind NUMPAD2 REPAIR" & @CRLF & "bind NUMPAD3 dig" & @CRLF & _
     "bind NUMPAD4 fish" & @CRLF & "bind NUMPAD5 mine_forward" & @CRLF & _
     "bind NUMPAD6 track" & @CRLF & "bind o ACTIVATE_TOOL1" & @CRLF & _
-    "bind p ACTIVATE_TOOL2" & @CRLF & "bind p ACTIVATE_TOOL3" & @CRLF & _
-    "bind p ACTIVATE_TOOL4" & @CRLF & "bind p ACTIVATE_TOOL5" & @CRLF & _
-    "bind p ACTIVATE_TOOL6")
+    "bind p ACTIVATE_TOOL2" & @CRLF & "bind k ACTIVATE_TOOL3" & @CRLF & _
+    "bind l ACTIVATE_TOOL4" & @CRLF & "bind m ACTIVATE_TOOL5" & @CRLF & _
+    "bind j ACTIVATE_TOOL6")
+
+    $hadtorebind=true
+    MsgBox(0,"","You can now open the game safely")
 
     EndIf
-
 
    ; On ferme le fichier
    FileClose($keybindopen)
 
+   If ($wurmisopen=true) AND ($hadtorebind=true) then
+    msgbox(0,"","Bob is done binding your keys, however your Wurm client was open," & _
+    "you will need to restart the game to activate those keybinds. Please start Bob first next time to avoid that problem")
+  EndIf
 EndFunc
