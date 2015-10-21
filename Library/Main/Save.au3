@@ -47,13 +47,13 @@ msgbox(1,"","Please select your Wurm Unlimited installation folder")
         if @error Then
           msgbox(1+262144,"","No folder selected")
         Endif
-    Local $kFileExists = FileExists ($FileSelectFolder & "\configs\default\autorun.txt")
+    Local $kFileExists = FileExists ($FileSelectFolder & "\WurmLauncher\PlayerFiles\configs\default\autorun.txt")
       if $kFileExists = 0 Then
         msgbox(1,""," There appears to be a problem, I couldn't retrieve your file, I will now ask you to select your keybinds file directly")
         $hotkeypathset = false
         kFileselect()
       Else
-        $hotkeypath = ($FileSelectFolder & "\configs\default\autorun.txt")
+        $hotkeypath = ($FileSelectFolder & "\WurmLauncher\PlayerFiles\configs\default\autorun.txt")
         $hotkeypathset = true
         pathsave()
       EndIf
