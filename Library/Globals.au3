@@ -43,8 +43,8 @@ Global $loopcounter=0
 Global $ps1=0
 Global $ps2=0
 Global $citem=0
-Global $state= WinGetState("Wurm Unlimited", "")
-Global $state2= "Wurm Unlimited"
+Global $state= WinGetState("[CLASS:LWJGL]", "")
+Global $state2= "[CLASS:LWJGL]"
 Global $wurmprocessname="WurmLauncher.exe"
 Global $line
 Global $lump=false
@@ -55,4 +55,5 @@ Global $keybindopen=0
 Global $hotkeypathset=0
 Global $wurmisopen=false
 Global $hadtorebind=false
+Global $ActiveWindow = 0
 #RequireAdmin
