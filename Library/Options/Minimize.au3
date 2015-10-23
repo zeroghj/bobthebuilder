@@ -1,5 +1,6 @@
 Func Minimize($a)
 if ($a) then
+	$ActiveWindow = WinActive("[ACTIVE]","")
 	call("Beeping")
 	BlockInput(1)
 	call("mouseinitpos")
@@ -13,7 +14,9 @@ Endif
 		WinSetState($state2, "", @SW_MINIMIZE)
 		EndIf
 		If(NOT($a)) Then
-		BlockInput(0)
+		;Send("!{TAB}")
+		WinActivate($ActiveWindow)
 		Call("mousereturn")
+		BlockInput(0)
 		EndIf
 EndFunc

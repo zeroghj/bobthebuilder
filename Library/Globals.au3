@@ -55,4 +55,5 @@ Global $keybindopen=0
 Global $hotkeypathset=0
 Global $wurmisopen=false
 Global $hadtorebind=false
+Global $ActiveWindow = 0
 #RequireAdmin
