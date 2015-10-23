@@ -1,6 +1,18 @@
-Version 2.1.1 of Bob the Builder
+Version 2.1.2 of Bob the Builder
 
 CHANGELOG
+
+UPDATE TO 2.1.2
+------------------------------
+#Fixed Minimize
+#Reviewed and Fixed Mining module
+#Fixed a few bugs and removed useless debug messages
+#NOW WORKING PROPERLY WITH UNLIMITED
+
+To Do (Jay)
+-Clean even more code
+-Not satisfied with the focus reset after module action
+------------------------------
 
 UPDATE TO 2.1.1
 ------------------------------
